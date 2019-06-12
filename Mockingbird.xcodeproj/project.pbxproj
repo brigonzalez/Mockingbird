@@ -16,6 +16,7 @@
 		92B0E82222AF1EF60026758F /* MockingbirdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E82122AF1EF60026758F /* MockingbirdUITests.swift */; };
 		92B0E83222AF39850026758F /* ClipboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E83122AF39850026758F /* ClipboardController.swift */; };
 		92B0E83422AF3E210026758F /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E83322AF3E210026758F /* EventMonitor.swift */; };
+		92B0E83622B0A4070026758F /* PasteboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E83522B0A4070026758F /* PasteboardWatcher.swift */; };
 		B2F9EAC4C21905535CE6DC35 /* Pods_Mockingbird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5F6122284ABD38A1E02DF4 /* Pods_Mockingbird.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		92B0E82322AF1EF60026758F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92B0E83122AF39850026758F /* ClipboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardController.swift; sourceTree = "<group>"; };
 		92B0E83322AF3E210026758F /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		92B0E83522B0A4070026758F /* PasteboardWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWatcher.swift; sourceTree = "<group>"; };
 		9559BDE5136C77656A8B64C3 /* Pods-MockingbirdUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockingbirdUITests.debug.xcconfig"; path = "Target Support Files/Pods-MockingbirdUITests/Pods-MockingbirdUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CA3D1378675FE80466BA98BC /* Pods-MockingbirdUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockingbirdUITests.release.xcconfig"; path = "Target Support Files/Pods-MockingbirdUITests/Pods-MockingbirdUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CAD174535FAA994C09E24CD7 /* Pods-MockingbirdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockingbirdTests.debug.xcconfig"; path = "Target Support Files/Pods-MockingbirdTests/Pods-MockingbirdTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				92B0E80322AF1EF50026758F /* AppDelegate.swift */,
+				92B0E83522B0A4070026758F /* PasteboardWatcher.swift */,
 				92B0E80722AF1EF60026758F /* Assets.xcassets */,
 				92B0E80922AF1EF60026758F /* Main.storyboard */,
 				92B0E80C22AF1EF60026758F /* Info.plist */,
@@ -388,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B0E83222AF39850026758F /* ClipboardController.swift in Sources */,
+				92B0E83622B0A4070026758F /* PasteboardWatcher.swift in Sources */,
 				92B0E80422AF1EF50026758F /* AppDelegate.swift in Sources */,
 				92B0E83422AF3E210026758F /* EventMonitor.swift in Sources */,
 			);

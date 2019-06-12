@@ -14,33 +14,28 @@ import Magnet
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mouseEventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
-    let popover = NSPopover()
+    let clipboard = NSPopover()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
             button.action = #selector(togglePopover(_:))
         }
-        popover.contentViewController = ClipboardController.freshController()
+        clipboard.contentViewController = ClipboardController.freshController()
         
         mouseEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-            if let strongSelf = self, strongSelf.popover.isShown {
+            if let strongSelf = self, strongSelf.clipboard.isShown {
                 strongSelf.closePopover(sender: event)
             }
         }
         
         if let keyCombo = KeyCombo(keyCode: 9, cocoaModifiers: [.command, .shift]) {
-            let hotKey = HotKey(identifier: "CommandControlB", keyCombo: keyCombo, target: self, action: #selector(magnetKey(_:)))
+            let hotKey = HotKey(identifier: "CommandShiftV", keyCombo: keyCombo, target: self, action: #selector(togglePopover(_:)))
             hotKey.register()
         }
-    }
-    
-    @objc func magnetKey(_ sender: Any?){
-        togglePopover(sender)
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Clear clipboard
+        
+        let pasteboardWatcher = PasteboardWatcher()
+        pasteboardWatcher.startPolling()
     }
     
 //    func constructMenu() {
@@ -54,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //    }
     
     @objc func togglePopover(_ sender: Any?) {
-        if popover.isShown {
+        if clipboard.isShown {
             closePopover(sender: sender)
         } else {
             showPopover(sender: sender)
@@ -63,13 +58,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func showPopover(sender: Any?) {
         if let button = statusItem.button {
-            popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            clipboard.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
         }
         mouseEventMonitor?.start()
     }
     
     func closePopover(sender: Any?) {
-        popover.performClose(sender)
+        clipboard.performClose(sender)
         mouseEventMonitor?.stop()
     }
 }
