@@ -9,7 +9,8 @@
 import Cocoa
 
 public class EventMonitor {
-    private var monitor: Any?
+    private var globalMonitor: Any?
+    private var localMonitor: Any?
     private let mask: NSEvent.EventTypeMask
     private let handler: (NSEvent?) -> Void
     
@@ -23,13 +24,21 @@ public class EventMonitor {
     }
     
     public func start() {
-        monitor = NSEvent.addGlobalMonitorForEvents(matching: mask, handler: handler)
+        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: mask, handler: handler)
+        localMonitor = NSEvent.addLocalMonitorForEvents(matching: mask) { (event) -> NSEvent? in
+            self.handler(event)
+            return event
+        }
     }
     
     public func stop() {
-        if monitor != nil {
-            NSEvent.removeMonitor(monitor!)
-            monitor = nil
+        if globalMonitor != nil {
+            NSEvent.removeMonitor(globalMonitor!)
+            globalMonitor = nil
+        }
+        if localMonitor != nil {
+            NSEvent.removeMonitor(localMonitor!)
+            localMonitor = nil
         }
     }
 }

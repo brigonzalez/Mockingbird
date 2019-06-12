@@ -7,11 +7,12 @@
 //
 
 import Cocoa
+import HotKey
+import Magnet
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mouseEventMonitor: EventMonitor?
-    var keyEventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let popover = NSPopover()
 
@@ -28,17 +29,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        keyEventMonitor = EventMonitor(mask: .flagsChanged) { [weak self] event in
-            let keyPress = event?.modifierFlags.intersection(.deviceIndependentFlagsMask)
-            
-            if let strongSelf = self, keyPress?.contains([.control, .option, .command]) ?? false {
-                strongSelf.togglePopover(event)
-            }
-            
+        if let keyCombo = KeyCombo(keyCode: 9, cocoaModifiers: [.command, .shift]) {
+            let hotKey = HotKey(identifier: "CommandControlB", keyCombo: keyCombo, target: self, action: #selector(magnetKey(_:)))
+            hotKey.register()
         }
-        keyEventMonitor?.start()
     }
-
+    
+    @objc func magnetKey(_ sender: Any?){
+        togglePopover(sender)
+    }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Clear clipboard

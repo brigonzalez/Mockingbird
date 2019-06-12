@@ -12,19 +12,32 @@ class ClipboardController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        // Set string to clipboard
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        pasteboard.setString("Good Morning", forType: NSPasteboard.PasteboardType.string)
+        
+        var clipboardItems: [String] = []
+        for element in pasteboard.pasteboardItems! {
+            if let str = element.string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text")) {
+                clipboardItems.append(str)
+            }
+        }
+        
+        // Access the item in the clipboard
+        let firstClipboardItem = clipboardItems[0] // Good Morning
+        
+        print(firstClipboardItem)
     }
     
 }
 
 extension ClipboardController {
-    // MARK: Storyboard instantiation
     static func freshController() -> ClipboardController {
-        //1.
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        //2.
         let identifier = NSStoryboard.SceneIdentifier("ClipboardController")
-        //3.
+        
         guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? ClipboardController else {
             fatalError("Why cant i find QuotesViewController? - Check Main.storyboard")
         }
