@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32A37C7B497058D30F018C9E /* Pods_MockingbirdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1ECC07EB05173CD8F5DD7E /* Pods_MockingbirdTests.framework */; };
 		5DD94ECCB80A756CA8D1D0FD /* Pods_MockingbirdUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECE0FE5A1810B11947B1DDA /* Pods_MockingbirdUITests.framework */; };
+		92A71D7A22B1F66700C29EEE /* ClipboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A71D7922B1F66700C29EEE /* ClipboardShortcuts.swift */; };
 		92B0E80422AF1EF50026758F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E80322AF1EF50026758F /* AppDelegate.swift */; };
 		92B0E80822AF1EF60026758F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92B0E80722AF1EF60026758F /* Assets.xcassets */; };
 		92B0E80B22AF1EF60026758F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92B0E80922AF1EF60026758F /* Main.storyboard */; };
@@ -16,7 +17,7 @@
 		92B0E82222AF1EF60026758F /* MockingbirdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E82122AF1EF60026758F /* MockingbirdUITests.swift */; };
 		92B0E83222AF39850026758F /* ClipboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E83122AF39850026758F /* ClipboardController.swift */; };
 		92B0E83422AF3E210026758F /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E83322AF3E210026758F /* EventMonitor.swift */; };
-		92B0E83622B0A4070026758F /* PasteboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E83522B0A4070026758F /* PasteboardWatcher.swift */; };
+		92B0E83622B0A4070026758F /* PasteboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E83522B0A4070026758F /* PasteboardManager.swift */; };
 		B2F9EAC4C21905535CE6DC35 /* Pods_Mockingbird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5F6122284ABD38A1E02DF4 /* Pods_Mockingbird.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		3E5F6122284ABD38A1E02DF4 /* Pods_Mockingbird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mockingbird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECE0FE5A1810B11947B1DDA /* Pods_MockingbirdUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockingbirdUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617BC34315492A577EAA890C /* Pods-Mockingbird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mockingbird.release.xcconfig"; path = "Target Support Files/Pods-Mockingbird/Pods-Mockingbird.release.xcconfig"; sourceTree = "<group>"; };
+		92A71D7922B1F66700C29EEE /* ClipboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardShortcuts.swift; sourceTree = "<group>"; };
 		92B0E80022AF1EF50026758F /* Mockingbird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mockingbird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B0E80322AF1EF50026758F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92B0E80722AF1EF60026758F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +59,7 @@
 		92B0E82322AF1EF60026758F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92B0E83122AF39850026758F /* ClipboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardController.swift; sourceTree = "<group>"; };
 		92B0E83322AF3E210026758F /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
-		92B0E83522B0A4070026758F /* PasteboardWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWatcher.swift; sourceTree = "<group>"; };
+		92B0E83522B0A4070026758F /* PasteboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManager.swift; sourceTree = "<group>"; };
 		9559BDE5136C77656A8B64C3 /* Pods-MockingbirdUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockingbirdUITests.debug.xcconfig"; path = "Target Support Files/Pods-MockingbirdUITests/Pods-MockingbirdUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CA3D1378675FE80466BA98BC /* Pods-MockingbirdUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockingbirdUITests.release.xcconfig"; path = "Target Support Files/Pods-MockingbirdUITests/Pods-MockingbirdUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CAD174535FAA994C09E24CD7 /* Pods-MockingbirdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockingbirdTests.debug.xcconfig"; path = "Target Support Files/Pods-MockingbirdTests/Pods-MockingbirdTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,14 +142,15 @@
 		92B0E80222AF1EF50026758F /* Mockingbird */ = {
 			isa = PBXGroup;
 			children = (
+				92B0E80D22AF1EF60026758F /* Mockingbird.entitlements */,
+				92B0E80C22AF1EF60026758F /* Info.plist */,
 				92B0E80322AF1EF50026758F /* AppDelegate.swift */,
-				92B0E83522B0A4070026758F /* PasteboardWatcher.swift */,
+				92B0E83122AF39850026758F /* ClipboardController.swift */,
+				92A71D7922B1F66700C29EEE /* ClipboardShortcuts.swift */,
+				92B0E83322AF3E210026758F /* EventMonitor.swift */,
+				92B0E83522B0A4070026758F /* PasteboardManager.swift */,
 				92B0E80722AF1EF60026758F /* Assets.xcassets */,
 				92B0E80922AF1EF60026758F /* Main.storyboard */,
-				92B0E80C22AF1EF60026758F /* Info.plist */,
-				92B0E80D22AF1EF60026758F /* Mockingbird.entitlements */,
-				92B0E83122AF39850026758F /* ClipboardController.swift */,
-				92B0E83322AF3E210026758F /* EventMonitor.swift */,
 			);
 			path = Mockingbird;
 			sourceTree = "<group>";
@@ -391,7 +394,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B0E83222AF39850026758F /* ClipboardController.swift in Sources */,
-				92B0E83622B0A4070026758F /* PasteboardWatcher.swift in Sources */,
+				92A71D7A22B1F66700C29EEE /* ClipboardShortcuts.swift in Sources */,
+				92B0E83622B0A4070026758F /* PasteboardManager.swift in Sources */,
 				92B0E80422AF1EF50026758F /* AppDelegate.swift in Sources */,
 				92B0E83422AF3E210026758F /* EventMonitor.swift in Sources */,
 			);

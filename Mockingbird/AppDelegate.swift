@@ -14,17 +14,18 @@ import Magnet
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mouseEventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
-    let clipboard = NSPopover()
+    let pasteboardWatcher = PasteboardManager.shared
+    let popover = NSPopover()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
             button.action = #selector(togglePopover(_:))
         }
-        clipboard.contentViewController = ClipboardController.freshController()
+        popover.contentViewController = ClipboardController.freshController()
         
         mouseEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-            if let strongSelf = self, strongSelf.clipboard.isShown {
+            if let strongSelf = self, strongSelf.popover.isShown {
                 strongSelf.closePopover(sender: event)
             }
         }
@@ -34,7 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             hotKey.register()
         }
         
-        let pasteboardWatcher = PasteboardWatcher()
         pasteboardWatcher.startPolling()
     }
     
@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //    }
     
     @objc func togglePopover(_ sender: Any?) {
-        if clipboard.isShown {
+        if popover.isShown {
             closePopover(sender: sender)
         } else {
             showPopover(sender: sender)
@@ -58,13 +58,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func showPopover(sender: Any?) {
         if let button = statusItem.button {
-            clipboard.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
         }
         mouseEventMonitor?.start()
     }
     
     func closePopover(sender: Any?) {
-        clipboard.performClose(sender)
+        popover.performClose(sender)
         mouseEventMonitor?.stop()
     }
 }
