@@ -780,9 +780,8 @@ CA
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MCB-C4-5dh">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MCB-C4-5dh">
                                 <rect key="frame" x="18" y="22" width="101" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Start at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="fdt-LZ-HZt">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -799,9 +798,11 @@ CA
                             <constraint firstItem="A3F-dL-a41" firstAttribute="top" secondItem="UQH-wb-CrB" secondAttribute="top" constant="6" id="CcS-mX-gn0"/>
                             <constraint firstItem="A3F-dL-a41" firstAttribute="centerX" secondItem="UQH-wb-CrB" secondAttribute="centerX" id="DJg-C9-LYY"/>
                             <constraint firstAttribute="bottom" secondItem="3VL-s0-8Bp" secondAttribute="bottom" constant="20" id="FC0-xM-YYB"/>
+                            <constraint firstItem="MCB-C4-5dh" firstAttribute="leading" secondItem="UQH-wb-CrB" secondAttribute="leading" constant="20" id="JLi-z2-AVB"/>
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="top" secondItem="A3F-dL-a41" secondAttribute="bottom" constant="6" id="Q0h-xW-H8R"/>
                             <constraint firstAttribute="trailing" secondItem="9UK-Jj-cfk" secondAttribute="trailing" constant="20" id="Rvj-wP-5J3"/>
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="leading" secondItem="UQH-wb-CrB" secondAttribute="leading" constant="20" id="a08-mM-Ivt"/>
+                            <constraint firstAttribute="bottom" secondItem="MCB-C4-5dh" secondAttribute="bottom" constant="24" id="eLT-fz-5vg"/>
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="top" secondItem="A3F-dL-a41" secondAttribute="bottom" constant="6" id="g3v-t6-XN6"/>
                             <constraint firstAttribute="trailing" secondItem="v0Q-u8-4tv" secondAttribute="trailing" constant="20" id="oLZ-R7-N6l"/>
                         </constraints>
