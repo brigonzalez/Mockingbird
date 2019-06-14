@@ -693,25 +693,36 @@
                                 <buttonCell key="cell" type="push" title="Quit (⌘Q)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A1D-zv-iNA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">q</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    <connections>
+                                        <action selector="quitButtonPress:" target="XfG-lQ-9wD" id="XPb-bX-xcA"/>
+                                    </connections>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3VL-s0-8Bp">
-                                <rect key="frame" x="172" y="13" width="106" height="32"/>
-                                <buttonCell key="cell" type="push" title="Clear (⌘X)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qo8-pU-Gcx">
+                                <rect key="frame" x="169" y="13" width="112" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear (⌘ ⌫)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qo8-pU-Gcx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    <connections>
+                                        <action selector="clearButtonPress:" target="XfG-lQ-9wD" id="iHt-0P-vb2"/>
+                                    </connections>
                                 </buttonCell>
                             </button>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-Jj-cfk">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-Jj-cfk">
                                 <rect key="frame" x="20" y="58" width="410" height="213"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="k84-sW-8Tv">
                                     <rect key="frame" x="1" y="1" width="408" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="fph-Ek-gdI">
-                                            <rect key="frame" x="0.0" y="0.0" width="413" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="410" height="211"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
@@ -729,7 +740,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="ClipCellId" id="bqN-sm-a00">
-                                                            <rect key="frame" x="1" y="1" width="410" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="410" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2N-Iu-36L">
@@ -752,7 +763,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.20000000000000001" horizontal="YES" id="4sM-pO-yO7">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="YES" id="4sM-pO-yO7">
                                     <rect key="frame" x="1" y="196" width="408" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -761,21 +772,25 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="atl-w9-AJV">
-                                <rect key="frame" x="18" y="22" width="101" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pvh-SR-eTg">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A3F-dL-a41">
-                                <rect key="frame" x="175" y="277" width="101" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Open with ⌘⇧V" id="5af-KS-wfp">
+                                <rect key="frame" x="147" y="277" width="157" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Show and hide with ⌘⇧V" id="5af-KS-wfp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MCB-C4-5dh">
+                                <rect key="frame" x="18" y="22" width="101" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Start at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="fdt-LZ-HZt">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="startAtLoginCheck:" target="XfG-lQ-9wD" id="40G-EE-DxY"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="3VL-s0-8Bp" firstAttribute="centerX" secondItem="UQH-wb-CrB" secondAttribute="centerX" id="0qZ-QL-pJ1"/>
@@ -786,15 +801,14 @@
                             <constraint firstAttribute="bottom" secondItem="3VL-s0-8Bp" secondAttribute="bottom" constant="20" id="FC0-xM-YYB"/>
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="top" secondItem="A3F-dL-a41" secondAttribute="bottom" constant="6" id="Q0h-xW-H8R"/>
                             <constraint firstAttribute="trailing" secondItem="9UK-Jj-cfk" secondAttribute="trailing" constant="20" id="Rvj-wP-5J3"/>
-                            <constraint firstAttribute="bottom" secondItem="atl-w9-AJV" secondAttribute="bottom" constant="24" id="XRQ-km-hya"/>
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="leading" secondItem="UQH-wb-CrB" secondAttribute="leading" constant="20" id="a08-mM-Ivt"/>
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="top" secondItem="A3F-dL-a41" secondAttribute="bottom" constant="6" id="g3v-t6-XN6"/>
-                            <constraint firstItem="atl-w9-AJV" firstAttribute="leading" secondItem="UQH-wb-CrB" secondAttribute="leading" constant="20" id="mcF-Vm-DL8"/>
                             <constraint firstAttribute="trailing" secondItem="v0Q-u8-4tv" secondAttribute="trailing" constant="20" id="oLZ-R7-N6l"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="pasteboard" destination="fph-Ek-gdI" id="tBw-0p-f6L"/>
+                        <outlet property="startAtLoginCheckbox" destination="fdt-LZ-HZt" id="Lqe-2N-RT8"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

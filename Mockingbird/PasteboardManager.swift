@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class PasteboardManager : NSObject {
+class PasteboardManager: NSObject {
     static let shared = PasteboardManager()
     
     var clipboard: [String] = []
@@ -16,19 +16,21 @@ class PasteboardManager : NSObject {
     private let pasteboard = NSPasteboard.general
     private var pasteboardItemCount: Int = 0
     
-    weak var timer: Timer?
-    
     private override init() {}
     
     func startPolling () {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PasteboardManager.checkForChangesInPasteboard), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(checkForChangesInPasteboard), userInfo: nil, repeats: true)
     }
     
     func copyToPasteboard(clip: String) {
-        // this needs to be fixed
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        print(clip)
         pasteboard.setString(clip, forType: NSPasteboard.PasteboardType.string)
+        
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(removeLastCopiedString), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func removeLastCopiedString() {
+        clipboard.removeFirst()
     }
     
     @objc private func addToClipboard(stringToAdd: String) {

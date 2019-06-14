@@ -18,35 +18,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if let button = statusItem.button {
-            button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
-            button.action = #selector(togglePopover(_:))
-        }
         popover.contentViewController = ClipboardController.freshController()
+        setStatusButton()
+        setMouseEventMonitor()
+        setEscapeEventMonitor()
+        setShowHideKeyboardShortcut()
         
+        pasteboardWatcher.startPolling()
+    }
+
+    func setStatusButton() {
+        let mockingbirdMenuButton = statusItem.button
+        mockingbirdMenuButton?.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
+        mockingbirdMenuButton?.action = #selector(togglePopover(_:))
+    }
+
+    func setMouseEventMonitor() {
         mouseEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
             if let strongSelf = self, strongSelf.popover.isShown {
                 strongSelf.closePopover(sender: event)
             }
         }
-        
-        if let keyCombo = KeyCombo(keyCode: 9, cocoaModifiers: [.command, .shift]) {
-            let hotKey = HotKey(identifier: "CommandShiftV", keyCombo: keyCombo, target: self, action: #selector(togglePopover(_:)))
-            hotKey.register()
-        }
-        
-        pasteboardWatcher.startPolling()
     }
-    
-//    func constructMenu() {
-//        let menu = NSMenu()
-//
-//        menu.addItem(NSMenuItem(title: "Print Quote", action: #selector(AppDelegate.printQuote(_:)), keyEquivalent: "P"))
-//        menu.addItem(NSMenuItem.separator())
-//        menu.addItem(NSMenuItem(title: "Quit Quotes", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
-//
-//        statusItem.menu = menu
-//    }
+
+    func setEscapeEventMonitor() {
+        let escapeEventMonitor = EventMonitor(mask: .keyDown) { [weak self] event in
+            if let strongSelf = self, strongSelf.popover.isShown && event?.keyCode == 53 {
+                strongSelf.closePopover(sender: event)
+            }
+        }
+        escapeEventMonitor.startLocalMonitor()
+    }
+
+    func setShowHideKeyboardShortcut() {
+        let commandShiftVKeyCombo = KeyCombo(keyCode: 9, cocoaModifiers: [.command, .shift])
+        let commandShiftVHotKey = HotKey(identifier: "CommandShiftV", keyCombo: commandShiftVKeyCombo!, target: self, action: #selector(togglePopover(_:)))
+        commandShiftVHotKey.register()
+    }
     
     @objc func togglePopover(_ sender: Any?) {
         if popover.isShown {
@@ -60,11 +68,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusItem.button {
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
         }
-        mouseEventMonitor?.start()
+        mouseEventMonitor?.startGlobalMonitor()
     }
     
     func closePopover(sender: Any?) {
         popover.performClose(sender)
-        mouseEventMonitor?.stop()
+        mouseEventMonitor?.stopGlobalMonitor()
     }
 }

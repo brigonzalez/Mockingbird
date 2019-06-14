@@ -7,31 +7,51 @@
 //
 
 import Cocoa
+import LaunchAtLogin
 
 class ClipboardController: NSViewController {
     @IBOutlet weak var pasteboard: NSTableView!
+    @IBOutlet weak var startAtLoginCheckbox: NSButtonCell!
+    
     private let pasteboardManager = PasteboardManager.shared
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pasteboard.delegate = self
         pasteboard.dataSource = self
-        
         pasteboard.target = self
         pasteboard.doubleAction = #selector(tableViewDoubleClick(_:))
+        
+        if (LaunchAtLogin.isEnabled) {
+            startAtLoginCheckbox.state = NSControl.StateValue.on
+        } else {
+            startAtLoginCheckbox.state = NSControl.StateValue.off
+        }
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         
+        pasteboard.selectRowIndexes(NSIndexSet(index: 0) as IndexSet, byExtendingSelection: false)
         pasteboard.reloadData()
+    }
+    
+    @IBAction func startAtLoginCheck(_ sender: NSButton) {
+        LaunchAtLogin.isEnabled = Bool(truncating: sender.state.rawValue as NSNumber)
+    }
+    
+    @IBAction func clearButtonPress(_ sender: Any) {
+        pasteboardManager.clipboard.removeAll()
+        pasteboard.reloadData()
+    }
+    
+    @IBAction func quitButtonPress(_ sender: Any) {
+        NSApplication.shared.terminate(self)
     }
     
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
         let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
-        
         pasteboardManager.copyToPasteboard(clip: clip)
     }
 }
