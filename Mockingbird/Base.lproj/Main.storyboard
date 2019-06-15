@@ -744,32 +744,18 @@ CA
                                                             <rect key="frame" x="0.0" y="0.0" width="410" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <scrollView ambiguous="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="D4s-eH-2b1">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2N-Iu-36L">
                                                                     <rect key="frame" x="50" y="0.0" width="360" height="50"/>
-                                                                    <clipView key="contentView" drawsBackground="NO" id="bAF-it-8cX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="50"/>
-                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                        <subviews>
-                                                                            <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" selectionGranularity="paragraph" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="fj3-R7-1jN">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="360" height="50"/>
-                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                                <size key="minSize" width="360" height="50"/>
-                                                                                <size key="maxSize" width="410" height="10000000"/>
-                                                                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textView>
-                                                                        </subviews>
-                                                                    </clipView>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="360" id="9fX-u9-VSd"/>
-                                                                        <constraint firstAttribute="height" constant="50" id="TLq-rI-iV6"/>
+                                                                        <constraint firstAttribute="width" constant="356" id="BxU-pb-CqW"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="ahb-Cg-Y3k"/>
                                                                     </constraints>
-                                                                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="UP0-vc-ZBH">
-                                                                        <rect key="frame" x="344" y="0.0" width="16" height="50"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                    </scroller>
-                                                                </scrollView>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" id="2VB-AO-ZMa" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UjS-04-f0j">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <constraints>
@@ -784,7 +770,7 @@ CA
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
-                                                                <outlet property="clipTextView" destination="fj3-R7-1jN" id="007-p3-6i4"/>
+                                                                <outlet property="clipTextField" destination="a2N-Iu-36L" id="ACs-T5-6LG"/>
                                                                 <outlet property="keyboardShortcutLabel" destination="UjS-04-f0j" id="u52-vv-c0E"/>
                                                             </connections>
                                                         </tableCellView>
