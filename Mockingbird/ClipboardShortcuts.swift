@@ -31,4 +31,11 @@ class ClipboardShortcuts : NSObject {
         "⌘⇧9",
         "⌘⇧0"
     ]
+    static func getModifierMask(row: Int) -> NSEvent.ModifierFlags {
+        if (row > 9) {
+            return [NSEvent.ModifierFlags.command, NSEvent.ModifierFlags.shift]
+        }
+        
+        return [NSEvent.ModifierFlags.command]
+    }
 }

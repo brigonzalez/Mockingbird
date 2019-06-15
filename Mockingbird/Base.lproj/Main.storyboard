@@ -721,13 +721,13 @@ CA
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" usesAutomaticRowHeights="YES" viewBased="YES" id="fph-Ek-gdI">
-                                            <rect key="frame" x="0.0" y="0.0" width="410" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="408" height="211"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn editable="NO" width="410" minWidth="10" maxWidth="3.4028234663852886e+38" id="Nog-0l-837">
+                                                <tableColumn editable="NO" width="408" minWidth="10" maxWidth="3.4028234663852886e+38" id="Nog-0l-837">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -740,15 +740,15 @@ CA
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ClipCellId" id="bqN-sm-a00" customClass="ClipboardTableCellView" customModule="Mockingbird" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="410" height="50"/>
+                                                        <tableCellView identifier="ClipCellId" misplaced="YES" id="bqN-sm-a00" customClass="ClipboardTableCellView" customModule="Mockingbird" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="408" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2N-Iu-36L">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2N-Iu-36L">
                                                                     <rect key="frame" x="50" y="0.0" width="360" height="50"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="356" id="BxU-pb-CqW"/>
-                                                                        <constraint firstAttribute="height" constant="50" id="ahb-Cg-Y3k"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="78C-7j-xR9"/>
+                                                                        <constraint firstAttribute="width" constant="360" id="fxv-7Q-Qu3"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" id="2VB-AO-ZMa" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
                                                                         <font key="font" metaFont="system"/>
@@ -756,22 +756,34 @@ CA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UjS-04-f0j">
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTa-Yb-7Nk">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="iMC-Xh-Qbm"/>
-                                                                        <constraint firstAttribute="width" constant="46" id="nqd-fO-V40"/>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="HX1-nF-XLo"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="Jgs-Rm-S5E"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="QHQ-2x-KBh"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="cW0-0g-4fu"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="center" title="⌘1" id="WXj-33-QaK" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
-                                                                        <font key="font" metaFont="system" size="17"/>
-                                                                        <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
+                                                                    <buttonCell key="cell" type="bevel" title="⌘1" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="hK5-2X-AeM">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system" size="18"/>
+                                                                    </buttonCell>
+                                                                    <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                                                    <connections>
+                                                                        <action selector="keyboardShortcutButtonClick:" target="XfG-lQ-9wD" id="Haq-q3-wSq"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="BbR-bW-mEI"/>
+                                                                <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="NCL-GT-fZ8"/>
+                                                                <constraint firstItem="a2N-Iu-36L" firstAttribute="leading" secondItem="YTa-Yb-7Nk" secondAttribute="trailing" id="U19-sX-3z0"/>
+                                                                <constraint firstItem="YTa-Yb-7Nk" firstAttribute="top" secondItem="bqN-sm-a00" secondAttribute="top" id="Ysa-7X-JwB"/>
+                                                                <constraint firstAttribute="trailing" secondItem="a2N-Iu-36L" secondAttribute="trailing" id="s7H-sV-mOK"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="clipTextField" destination="a2N-Iu-36L" id="ACs-T5-6LG"/>
-                                                                <outlet property="keyboardShortcutLabel" destination="UjS-04-f0j" id="u52-vv-c0E"/>
+                                                                <outlet property="keyboardShortcutButton" destination="YTa-Yb-7Nk" id="6cP-ba-EcQ"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -780,7 +792,7 @@ CA
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="4sM-pO-yO7">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="4sM-pO-yO7">
                                     <rect key="frame" x="1" y="196" width="408" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

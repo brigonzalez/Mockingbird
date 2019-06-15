@@ -57,6 +57,12 @@ class ClipboardController: NSViewController {
         NSApplication.shared.terminate(self)
     }
     
+    @IBAction func keyboardShortcutButtonClick(_ sender: NSButton) {
+        let clip = pasteboardManager.clipboard[sender.tag]
+        pasteboardManager.copyToPasteboard(clip: clip)
+        appDelegate.togglePopover(sender)
+    }
+    
     @objc func tableViewDoubleClick(_ sender: AnyObject) {
         let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
         pasteboardManager.copyToPasteboard(clip: clip)
@@ -66,7 +72,6 @@ class ClipboardController: NSViewController {
 
 extension ClipboardController: NSTableViewDataSource {
     func numberOfRows(in pasteboard: NSTableView) -> Int {
-        
         return pasteboardManager.clipboard.count
     }
 }
@@ -77,7 +82,10 @@ extension ClipboardController: NSTableViewDelegate {
         let clip = pasteboardManager.clipboard[row]
         
         if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
-            cell.keyboardShortcutLabel.stringValue = keyboardShortcut
+            cell.keyboardShortcutButton.title = keyboardShortcut
+            cell.keyboardShortcutButton.tag = row
+            cell.keyboardShortcutButton.keyEquivalent = String(keyboardShortcut.last!)
+            cell.keyboardShortcutButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMask(row: row)
             cell.clipTextField.stringValue = clip
             
             return cell
