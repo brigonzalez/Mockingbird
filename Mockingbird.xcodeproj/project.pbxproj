@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		32A37C7B497058D30F018C9E /* Pods_MockingbirdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1ECC07EB05173CD8F5DD7E /* Pods_MockingbirdTests.framework */; };
 		5DD94ECCB80A756CA8D1D0FD /* Pods_MockingbirdUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECE0FE5A1810B11947B1DDA /* Pods_MockingbirdUITests.framework */; };
+		923128C022B4792F007536BA /* ClipboardTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923128BF22B4792F007536BA /* ClipboardTableCellView.swift */; };
+		923128C222B4850A007536BA /* ClipboardTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923128C122B4850A007536BA /* ClipboardTextFieldCell.swift */; };
 		92A71D7A22B1F66700C29EEE /* ClipboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A71D7922B1F66700C29EEE /* ClipboardShortcuts.swift */; };
 		92B0E80422AF1EF50026758F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0E80322AF1EF50026758F /* AppDelegate.swift */; };
 		92B0E80822AF1EF60026758F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92B0E80722AF1EF60026758F /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		3E5F6122284ABD38A1E02DF4 /* Pods_Mockingbird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mockingbird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECE0FE5A1810B11947B1DDA /* Pods_MockingbirdUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockingbirdUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617BC34315492A577EAA890C /* Pods-Mockingbird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mockingbird.release.xcconfig"; path = "Target Support Files/Pods-Mockingbird/Pods-Mockingbird.release.xcconfig"; sourceTree = "<group>"; };
+		923128BF22B4792F007536BA /* ClipboardTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardTableCellView.swift; sourceTree = "<group>"; };
+		923128C122B4850A007536BA /* ClipboardTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardTextFieldCell.swift; sourceTree = "<group>"; };
 		92A71D7922B1F66700C29EEE /* ClipboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardShortcuts.swift; sourceTree = "<group>"; };
 		92B0E80022AF1EF50026758F /* Mockingbird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mockingbird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B0E80322AF1EF50026758F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				92B0E80322AF1EF50026758F /* AppDelegate.swift */,
 				92B0E83122AF39850026758F /* ClipboardController.swift */,
 				92A71D7922B1F66700C29EEE /* ClipboardShortcuts.swift */,
+				923128BF22B4792F007536BA /* ClipboardTableCellView.swift */,
+				923128C122B4850A007536BA /* ClipboardTextFieldCell.swift */,
 				92B0E83322AF3E210026758F /* EventMonitor.swift */,
 				92B0E83522B0A4070026758F /* PasteboardManager.swift */,
 				92B0E80722AF1EF60026758F /* Assets.xcassets */,
@@ -412,11 +418,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923128C022B4792F007536BA /* ClipboardTableCellView.swift in Sources */,
 				92B0E83222AF39850026758F /* ClipboardController.swift in Sources */,
 				92A71D7A22B1F66700C29EEE /* ClipboardShortcuts.swift in Sources */,
 				92B0E83622B0A4070026758F /* PasteboardManager.swift in Sources */,
 				92B0E80422AF1EF50026758F /* AppDelegate.swift in Sources */,
 				92B0E83422AF3E210026758F /* EventMonitor.swift in Sources */,
+				923128C222B4850A007536BA /* ClipboardTextFieldCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

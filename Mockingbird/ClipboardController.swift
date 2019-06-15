@@ -13,6 +13,7 @@ class ClipboardController: NSViewController {
     @IBOutlet weak var pasteboard: NSTableView!
     @IBOutlet weak var startAtLoginCheckbox: NSButtonCell!
     
+    private let appDelegate = NSApplication.shared.delegate as! AppDelegate
     private let pasteboardManager = PasteboardManager.shared
     
     override func viewDidLoad() {
@@ -53,9 +54,9 @@ class ClipboardController: NSViewController {
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
         let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
         pasteboardManager.copyToPasteboard(clip: clip)
+        appDelegate.togglePopover(sender)
     }
 }
-
 
 extension ClipboardController: NSTableViewDataSource {
     func numberOfRows(in pasteboard: NSTableView) -> Int {
@@ -69,8 +70,10 @@ extension ClipboardController: NSTableViewDelegate {
         let keyboardShortcut = ClipboardShortcuts.clipboardShortcuts[row]
         let clip = pasteboardManager.clipboard[row]
         
-        if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = "\(keyboardShortcut): \(clip)"
+        if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
+            cell.keyboardShortcutLabel.stringValue = keyboardShortcut
+            cell.clipTextField.stringValue = clip
+            
             return cell
         }
         return nil
