@@ -18,17 +18,8 @@ class ClipboardController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pasteboard.delegate = self
-        pasteboard.dataSource = self
-        pasteboard.target = self
-        pasteboard.doubleAction = #selector(tableViewDoubleClick(_:))
-        
-        if (LaunchAtLogin.isEnabled) {
-            startAtLoginCheckbox.state = NSControl.StateValue.on
-        } else {
-            startAtLoginCheckbox.state = NSControl.StateValue.off
-        }
+        setPasteboardProperties()
+        setStartAtLoginCheckbox()
     }
     
     override func viewDidAppear() {
@@ -36,6 +27,21 @@ class ClipboardController: NSViewController {
         
         pasteboard.selectRowIndexes(NSIndexSet(index: 0) as IndexSet, byExtendingSelection: false)
         pasteboard.reloadData()
+    }
+    
+    func setStartAtLoginCheckbox() {
+        if (LaunchAtLogin.isEnabled) {
+            startAtLoginCheckbox.state = NSControl.StateValue.on
+        } else {
+            startAtLoginCheckbox.state = NSControl.StateValue.off
+        }
+    }
+    
+    func setPasteboardProperties() {
+        pasteboard.delegate = self
+        pasteboard.dataSource = self
+        pasteboard.target = self
+        pasteboard.doubleAction = #selector(tableViewDoubleClick(_:))
     }
     
     @IBAction func startAtLoginCheck(_ sender: NSButton) {
@@ -51,7 +57,7 @@ class ClipboardController: NSViewController {
         NSApplication.shared.terminate(self)
     }
     
-    @objc func tableViewDoubleClick(_ sender:AnyObject) {
+    @objc func tableViewDoubleClick(_ sender: AnyObject) {
         let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
         pasteboardManager.copyToPasteboard(clip: clip)
         appDelegate.togglePopover(sender)

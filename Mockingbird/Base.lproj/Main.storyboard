@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
-        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -726,7 +725,7 @@ CA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
-                                            <color key="gridColor" name="unemphasizedSelectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn editable="NO" width="410" minWidth="10" maxWidth="3.4028234663852886e+38" id="Nog-0l-837">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -751,7 +750,7 @@ CA
                                                                         <constraint firstAttribute="width" constant="356" id="BxU-pb-CqW"/>
                                                                         <constraint firstAttribute="height" constant="50" id="ahb-Cg-Y3k"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="2VB-AO-ZMa" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" id="2VB-AO-ZMa" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -763,10 +762,10 @@ CA
                                                                         <constraint firstAttribute="height" constant="50" id="iMC-Xh-Qbm"/>
                                                                         <constraint firstAttribute="width" constant="46" id="nqd-fO-V40"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="⌘1" id="WXj-33-QaK" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
-                                                                        <font key="font" metaFont="system" size="20"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="center" title="⌘1" id="WXj-33-QaK" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
+                                                                        <font key="font" metaFont="system" size="17"/>
                                                                         <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="unemphasizedSelectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
@@ -781,7 +780,7 @@ CA
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="YES" id="4sM-pO-yO7">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="4sM-pO-yO7">
                                     <rect key="frame" x="1" y="196" width="408" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
