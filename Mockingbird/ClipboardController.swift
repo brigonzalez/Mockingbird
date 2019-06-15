@@ -78,20 +78,11 @@ extension ClipboardController: NSTableViewDelegate {
         
         if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
             cell.keyboardShortcutLabel.stringValue = keyboardShortcut
-            cell.clipTextView.delegate = self
             cell.clipTextView.string = clip
             
             return cell
         }
         return nil
-    }
-}
-
-extension ClipboardController: NSTextViewDelegate {
-    func textView(_ textView: NSTextView, doubleClickedOn cell: NSTextAttachmentCellProtocol, in cellFrame: NSRect, at charIndex: Int) {
-        let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
-        pasteboardManager.copyToPasteboard(clip: clip)
-        appDelegate.togglePopover(nil)
     }
 }
 
