@@ -10,6 +10,7 @@ import Cocoa
 
 class PasteboardManager: NSObject {
     static let shared = PasteboardManager()
+    static var lastCopiedFromClipboardController: Bool = false
     
     var clipboard: [String] = []
     
@@ -25,6 +26,8 @@ class PasteboardManager: NSObject {
     func copyToPasteboard(clip: String) {
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         pasteboard.setString(clip, forType: NSPasteboard.PasteboardType.string)
+        
+        PasteboardManager.lastCopiedFromClipboardController = true
     }
     
     @objc private func addToClipboard(stringToAdd: String) {
@@ -36,7 +39,10 @@ class PasteboardManager: NSObject {
     }
     
     @objc private func checkForChangesInPasteboard() {
-        if let clippedString = pasteboard.string(forType: NSPasteboard.PasteboardType.string), pasteboard.changeCount != pasteboardItemCount {
+        if PasteboardManager.lastCopiedFromClipboardController {
+            pasteboardItemCount = pasteboard.changeCount
+            PasteboardManager.lastCopiedFromClipboardController = false
+        } else if let clippedString = pasteboard.string(forType: NSPasteboard.PasteboardType.string), pasteboard.changeCount != pasteboardItemCount {
             addToClipboard(stringToAdd: clippedString)
             pasteboardItemCount = pasteboard.changeCount
         }

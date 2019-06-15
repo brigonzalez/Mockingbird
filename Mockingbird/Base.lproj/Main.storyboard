@@ -750,7 +750,7 @@ CA
                                                                         <constraint firstAttribute="height" constant="50" id="78C-7j-xR9"/>
                                                                         <constraint firstAttribute="width" constant="360" id="fxv-7Q-Qu3"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" id="2VB-AO-ZMa" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
+                                                                    <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" id="2VB-AO-ZMa" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
