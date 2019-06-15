@@ -770,28 +770,22 @@ CA
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
                                                                 </scrollView>
-                                                                <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PD0-Gp-MJK">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UjS-04-f0j">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="58q-Ma-RpD"/>
-                                                                        <constraint firstAttribute="width" constant="50" id="mSo-9Z-tMi"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="iMC-Xh-Qbm"/>
+                                                                        <constraint firstAttribute="width" constant="46" id="nqd-fO-V40"/>
                                                                     </constraints>
-                                                                    <buttonCell key="cell" type="bevel" title="⌘ 1" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="YUK-04-2vu">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="system" size="18"/>
-                                                                        <connections>
-                                                                            <action selector="keyboardShortcutButtonPress:" target="XfG-lQ-9wD" id="cji-8x-ZPZ"/>
-                                                                        </connections>
-                                                                    </buttonCell>
-                                                                    <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                                                </button>
+                                                                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="center" title="⌘1" id="WXj-33-QaK" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
+                                                                        <font key="font" metaFont="system" size="17"/>
+                                                                        <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="PD0-Gp-MJK" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="t1R-IR-mM1"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="clipTextView" destination="fj3-R7-1jN" id="007-p3-6i4"/>
-                                                                <outlet property="keyboardShortcutButton" destination="PD0-Gp-MJK" id="Bh5-CE-RV6"/>
+                                                                <outlet property="keyboardShortcutLabel" destination="UjS-04-f0j" id="u52-vv-c0E"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -800,7 +794,7 @@ CA
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4sM-pO-yO7">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="4sM-pO-yO7">
                                     <rect key="frame" x="1" y="196" width="408" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

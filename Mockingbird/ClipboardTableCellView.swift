@@ -9,6 +9,6 @@
 import Cocoa
 
 class ClipboardTableCellView: NSTableCellView {
-    @IBOutlet weak var keyboardShortcutButton: NSButton!
+    @IBOutlet weak var keyboardShortcutLabel: NSTextField!
     @IBOutlet weak var clipTextView: NSTextView!
 }

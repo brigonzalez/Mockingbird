@@ -41,7 +41,7 @@ class ClipboardController: NSViewController {
         pasteboard.delegate = self
         pasteboard.dataSource = self
         pasteboard.target = self
-//        pasteboard.doubleAction = #selector(tableViewDoubleClick(_:))
+        pasteboard.doubleAction = #selector(tableViewDoubleClick(_:))
     }
     
     @IBAction func startAtLoginCheck(_ sender: NSButton) {
@@ -57,18 +57,11 @@ class ClipboardController: NSViewController {
         NSApplication.shared.terminate(self)
     }
     
-    @IBAction func keyboardShortcutButtonPress(_ sender: NSButton) {
-        print("in here")
-        let clip = pasteboardManager.clipboard[sender.tag]
+    @objc func tableViewDoubleClick(_ sender: AnyObject) {
+        let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
         pasteboardManager.copyToPasteboard(clip: clip)
         appDelegate.togglePopover(sender)
     }
-    
-//    @objc func tableViewDoubleClick(_ sender: AnyObject) {
-//        let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
-//        pasteboardManager.copyToPasteboard(clip: clip)
-//        appDelegate.togglePopover(sender)
-//    }
 }
 
 extension ClipboardController: NSTableViewDataSource {
@@ -84,9 +77,7 @@ extension ClipboardController: NSTableViewDelegate {
         let clip = pasteboardManager.clipboard[row]
         
         if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
-            cell.keyboardShortcutButton.title = keyboardShortcut
-//            cell.keyboardShortcutButton.keyEquivalent = keyboardShortcut
-            cell.keyboardShortcutButton.tag = row
+            cell.keyboardShortcutLabel.stringValue = keyboardShortcut
             cell.clipTextView.string = clip
             
             return cell
