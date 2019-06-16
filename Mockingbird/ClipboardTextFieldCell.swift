@@ -10,6 +10,7 @@ import Cocoa
 
 class ClipboardTextFieldCell: NSTextFieldCell {
     override func drawingRect(forBounds theRect: NSRect) -> NSRect {
+        print(theRect)
         let newRect = NSRect(x: 0, y: (theRect.size.height - 22) / 2, width: theRect.size.width, height: 22)
         return super.drawingRect(forBounds: newRect)
     }

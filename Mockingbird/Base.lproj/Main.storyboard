@@ -720,7 +720,7 @@ CA
                                     <rect key="frame" x="1" y="1" width="408" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" usesAutomaticRowHeights="YES" viewBased="YES" id="fph-Ek-gdI">
+                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" usesAutomaticRowHeights="YES" viewBased="YES" id="fph-Ek-gdI">
                                             <rect key="frame" x="0.0" y="0.0" width="408" height="211"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -733,29 +733,40 @@ CA
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" alignment="left" id="vqL-lZ-lZd" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
+                                                    <textFieldCell key="dataCell" selectable="YES" alignment="left" id="vqL-lZ-lZd">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ClipCellId" misplaced="YES" id="bqN-sm-a00" customClass="ClipboardTableCellView" customModule="Mockingbird" customModuleProvider="target">
+                                                        <tableCellView identifier="ClipCellId" autoresizesSubviews="NO" misplaced="YES" id="bqN-sm-a00" customClass="ClipboardTableCellView" customModule="Mockingbird" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="408" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2N-Iu-36L">
+                                                                <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vMz-2j-m0S">
                                                                     <rect key="frame" x="50" y="0.0" width="360" height="50"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oun-si-vbV">
+                                                                            <rect key="frame" x="0.0" y="17" width="360" height="17"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="356" id="u4E-Rh-szP"/>
+                                                                            </constraints>
+                                                                            <textFieldCell key="cell" selectable="YES" title="Clipped string" id="WOx-4R-uNz">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="78C-7j-xR9"/>
-                                                                        <constraint firstAttribute="width" constant="360" id="fxv-7Q-Qu3"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="oun-si-vbV" secondAttribute="trailing" constant="2" id="04u-vp-eOm"/>
+                                                                        <constraint firstAttribute="width" constant="360" id="GL4-qq-5tP"/>
+                                                                        <constraint firstItem="oun-si-vbV" firstAttribute="centerY" secondItem="vMz-2j-m0S" secondAttribute="centerY" id="Nyx-zf-EKL"/>
+                                                                        <constraint firstItem="oun-si-vbV" firstAttribute="leading" secondItem="vMz-2j-m0S" secondAttribute="leading" constant="2" id="RCy-wX-0e4"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="VOA-UD-JR4"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" id="2VB-AO-ZMa" customClass="ClipboardTextFieldCell" customModule="Mockingbird" customModuleProvider="target">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
+                                                                </customView>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTa-Yb-7Nk">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <constraints>
@@ -775,14 +786,14 @@ CA
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="vMz-2j-m0S" firstAttribute="leading" secondItem="YTa-Yb-7Nk" secondAttribute="trailing" id="3Ld-I2-A2F"/>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="BbR-bW-mEI"/>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="NCL-GT-fZ8"/>
-                                                                <constraint firstItem="a2N-Iu-36L" firstAttribute="leading" secondItem="YTa-Yb-7Nk" secondAttribute="trailing" id="U19-sX-3z0"/>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="top" secondItem="bqN-sm-a00" secondAttribute="top" id="Ysa-7X-JwB"/>
-                                                                <constraint firstAttribute="trailing" secondItem="a2N-Iu-36L" secondAttribute="trailing" id="s7H-sV-mOK"/>
+                                                                <constraint firstAttribute="trailing" secondItem="vMz-2j-m0S" secondAttribute="trailing" id="u7R-qm-4hq"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="clipTextField" destination="a2N-Iu-36L" id="ACs-T5-6LG"/>
+                                                                <outlet property="clippedLabel" destination="oun-si-vbV" id="NeB-Qa-OTB"/>
                                                                 <outlet property="keyboardShortcutButton" destination="YTa-Yb-7Nk" id="6cP-ba-EcQ"/>
                                                             </connections>
                                                         </tableCellView>

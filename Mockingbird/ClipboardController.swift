@@ -86,7 +86,7 @@ extension ClipboardController: NSTableViewDelegate {
             cell.keyboardShortcutButton.tag = row
             cell.keyboardShortcutButton.keyEquivalent = String(keyboardShortcut.last!)
             cell.keyboardShortcutButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMask(row: row)
-            cell.clipTextField.stringValue = clip
+            cell.clippedLabel.stringValue = clip
             
             return cell
         }
