@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func setStatusButton() {
         let mockingbirdMenuButton = statusItem.button
-        mockingbirdMenuButton?.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
+        mockingbirdMenuButton?.image = NSImage(named:NSImage.Name("Mockingbird-menu-icon"))
         mockingbirdMenuButton?.action = #selector(togglePopover(_:))
     }
 
