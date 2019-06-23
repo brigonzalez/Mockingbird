@@ -149,8 +149,12 @@ extension ClipboardController: NSTableViewDelegate {
     func animateClearButtonForMouseEvents(event: NSEvent, toCGFloat: CGFloat) {
         let clearButton = event.trackingArea?.userInfo?["clearButton"] as! NSButton
         let selectedRow = clipboard.row(for: clearButton)
-        let cell = clipboard.view(atColumn: 0, row: selectedRow, makeIfNecessary: true) as! ClipboardTableCellView
-        animateClearButtonAlphaValue(cell.clearButton, toCGFloat: toCGFloat)
+        
+        if (selectedRow != -1) {
+            let cell = clipboard.view(atColumn: 0, row: selectedRow, makeIfNecessary: true) as! ClipboardTableCellView
+            
+            animateClearButtonAlphaValue(cell.clearButton, toCGFloat: toCGFloat)
+        }
     }
     
     func tableViewSelectionIsChanging(_ notification: Notification) {
