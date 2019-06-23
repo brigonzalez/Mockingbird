@@ -15,6 +15,7 @@ class ClipboardController: NSViewController {
     
     private let appDelegate = NSApplication.shared.delegate as! AppDelegate
     private let pasteboardManager = PasteboardManager.shared
+    private var needToHandleTableViewSelectionDidChangeEvent = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,11 +117,15 @@ extension ClipboardController: NSTableViewDelegate {
     }
     
     func tableViewSelectionIsChanging(_ notification: Notification) {
+        needToHandleTableViewSelectionDidChangeEvent = false
         handleTableViewChanges()
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        handleTableViewChanges()
+        if (needToHandleTableViewSelectionDidChangeEvent) {
+            handleTableViewChanges()
+        }
+        needToHandleTableViewSelectionDidChangeEvent = true
     }
 }
 
