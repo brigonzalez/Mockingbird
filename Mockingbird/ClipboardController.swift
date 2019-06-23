@@ -10,7 +10,7 @@ import Cocoa
 import LaunchAtLogin
 
 class ClipboardController: NSViewController {
-    @IBOutlet weak var pasteboard: NSTableView!
+    @IBOutlet weak var clipboard: NSTableView!
     @IBOutlet weak var startAtLoginCheckbox: NSButtonCell!
     
     private let appDelegate = NSApplication.shared.delegate as! AppDelegate
@@ -23,11 +23,10 @@ class ClipboardController: NSViewController {
         setStartAtLoginCheckbox()
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
+    override func viewWillAppear() {
+        super.viewWillAppear()
         
-        pasteboard.selectRowIndexes(NSIndexSet(index: 0) as IndexSet, byExtendingSelection: false)
-        pasteboard.reloadData()
+        clipboard.reloadData()
     }
     
     func setStartAtLoginCheckbox() {
@@ -39,10 +38,10 @@ class ClipboardController: NSViewController {
     }
     
     func setPasteboardProperties() {
-        pasteboard.delegate = self
-        pasteboard.dataSource = self
-        pasteboard.target = self
-        pasteboard.doubleAction = #selector(tableViewDoubleClick(_:))
+        clipboard.delegate = self
+        clipboard.dataSource = self
+        clipboard.target = self
+        clipboard.doubleAction = #selector(tableViewDoubleClick(_:))
     }
     
     @IBAction func startAtLoginCheck(_ sender: NSButton) {
@@ -50,8 +49,8 @@ class ClipboardController: NSViewController {
     }
     
     @IBAction func clearAllButtonClick(_ sender: Any) {
-        pasteboardManager.clipboard.removeAll()
-        pasteboard.reloadData()
+        pasteboardManager.appPasteboard.removeAll()
+        clipboard.reloadData()
     }
     
     @IBAction func quitButtonClick(_ sender: Any) {
@@ -59,18 +58,20 @@ class ClipboardController: NSViewController {
     }
     
     @IBAction func clearButtonClick(_ sender: NSButton) {
-        pasteboardManager.clipboard.remove(at: sender.tag)
-        pasteboard.reloadData()
+        let selectedRow = clipboard.row(for: sender)
+        pasteboardManager.appPasteboard.remove(at: selectedRow)
+        clipboard.removeRows(at: NSIndexSet(index: selectedRow) as IndexSet, withAnimation: NSTableView.AnimationOptions.slideLeft)
     }
     
     @IBAction func keyboardShortcutButtonClick(_ sender: NSButton) {
-        let clip = pasteboardManager.clipboard[sender.tag]
+        let selectedRow = clipboard.row(for: sender)
+        let clip = pasteboardManager.appPasteboard[selectedRow]
         pasteboardManager.copyToPasteboard(clip: clip)
         appDelegate.togglePopover(sender)
     }
     
     @objc func tableViewDoubleClick(_ sender: AnyObject) {
-        let clip = pasteboardManager.clipboard[pasteboard.selectedRow]
+        let clip = pasteboardManager.appPasteboard[clipboard.selectedRow]
         pasteboardManager.copyToPasteboard(clip: clip)
         appDelegate.togglePopover(sender)
     }
@@ -78,22 +79,20 @@ class ClipboardController: NSViewController {
 
 extension ClipboardController: NSTableViewDataSource {
     func numberOfRows(in pasteboard: NSTableView) -> Int {
-        return pasteboardManager.clipboard.count
+        return pasteboardManager.appPasteboard.count
     }
 }
 
 extension ClipboardController: NSTableViewDelegate {
     func tableView(_ pasteboard: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let keyboardShortcut = ClipboardShortcuts.clipboardShortcuts[row]
-        let clip = pasteboardManager.clipboard[row]
+        let clip = pasteboardManager.appPasteboard[row]
         
         if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
             cell.keyboardShortcutButton.title = keyboardShortcut
-            cell.keyboardShortcutButton.tag = row
             cell.keyboardShortcutButton.keyEquivalent = String(keyboardShortcut.last!)
             cell.keyboardShortcutButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMask(row: row)
             cell.clippedLabel.stringValue = clip
-            cell.clearButton.tag = row
             cell.clearButton.isHidden = true
             cell.clearButton.isEnabled = false
             
@@ -103,10 +102,10 @@ extension ClipboardController: NSTableViewDelegate {
     }
     
     func handleTableViewChanges() {
-        for row in 0..<pasteboardManager.clipboard.count {
-            let cell = pasteboard.view(atColumn: 0, row: row, makeIfNecessary: true) as! ClipboardTableCellView
+        for row in 0..<pasteboardManager.appPasteboard.count {
+            let cell = clipboard.view(atColumn: 0, row: row, makeIfNecessary: true) as! ClipboardTableCellView
             
-            if (row == pasteboard.selectedRow) {
+            if (row == clipboard.selectedRow) {
                 cell.clearButton.isHidden = false
                 cell.clearButton.isEnabled = true
             } else {

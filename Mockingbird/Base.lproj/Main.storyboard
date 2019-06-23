@@ -701,14 +701,14 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3VL-s0-8Bp">
-                                <rect key="frame" x="160" y="13" width="131" height="32"/>
-                                <buttonCell key="cell" type="push" title="Clear All (⌘ ⌫)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qo8-pU-Gcx">
+                                <rect key="frame" x="156" y="13" width="138" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear All (⌘⇧⌫)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qo8-pU-Gcx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="clearAllButtonClick:" target="XfG-lQ-9wD" id="ahL-qA-94v"/>
@@ -773,7 +773,7 @@ CA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-JW-fA8">
+                                                                <button toolTip="Press ⌘⌫ to delete row" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-JW-fA8">
                                                                     <rect key="frame" x="373" y="9" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="bFf-oR-eFD"/>
@@ -785,6 +785,7 @@ CA
                                                                         <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
+                                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                     </buttonCell>
                                                                     <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                                                                     <connections>
@@ -858,7 +859,7 @@ CA
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="pasteboard" destination="fph-Ek-gdI" id="tBw-0p-f6L"/>
+                        <outlet property="clipboard" destination="fph-Ek-gdI" id="HPm-h2-qVN"/>
                         <outlet property="startAtLoginCheckbox" destination="fdt-LZ-HZt" id="Lqe-2N-RT8"/>
                     </connections>
                 </viewController>

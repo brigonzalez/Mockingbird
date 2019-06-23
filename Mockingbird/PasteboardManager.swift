@@ -12,9 +12,9 @@ class PasteboardManager: NSObject {
     static let shared = PasteboardManager()
     static var lastCopiedFromClipboardController: Bool = false
     
-    var clipboard: [String] = []
+    var appPasteboard: [String] = []
     
-    private let pasteboard = NSPasteboard.general
+    private let systemPasteboard = NSPasteboard.general
     private var pasteboardItemCount: Int = 0
     
     private override init() {}
@@ -24,27 +24,27 @@ class PasteboardManager: NSObject {
     }
     
     func copyToPasteboard(clip: String) {
-        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        pasteboard.setString(clip, forType: NSPasteboard.PasteboardType.string)
+        systemPasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        systemPasteboard.setString(clip, forType: NSPasteboard.PasteboardType.string)
         
         PasteboardManager.lastCopiedFromClipboardController = true
     }
     
     @objc private func addToClipboard(stringToAdd: String) {
-        clipboard.insert(stringToAdd, at: 0)
+        appPasteboard.insert(stringToAdd, at: 0)
         
-        if (clipboard.count == 20) {
-            clipboard.remove(at: 19)
+        if (appPasteboard.count == 20) {
+            appPasteboard.remove(at: 19)
         }
     }
     
     @objc private func checkForChangesInPasteboard() {
         if PasteboardManager.lastCopiedFromClipboardController {
-            pasteboardItemCount = pasteboard.changeCount
+            pasteboardItemCount = systemPasteboard.changeCount
             PasteboardManager.lastCopiedFromClipboardController = false
-        } else if let clippedString = pasteboard.string(forType: NSPasteboard.PasteboardType.string), pasteboard.changeCount != pasteboardItemCount {
+        } else if let clippedString = systemPasteboard.string(forType: NSPasteboard.PasteboardType.string), systemPasteboard.changeCount != pasteboardItemCount {
             addToClipboard(stringToAdd: clippedString)
-            pasteboardItemCount = pasteboard.changeCount
+            pasteboardItemCount = systemPasteboard.changeCount
         }
     }
 }
