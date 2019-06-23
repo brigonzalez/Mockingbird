@@ -695,24 +695,24 @@
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent">q</string>
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                    <connections>
-                                        <action selector="quitButtonPress:" target="XfG-lQ-9wD" id="XPb-bX-xcA"/>
-                                    </connections>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="quitButtonClick:" target="XfG-lQ-9wD" id="QVp-JT-qLX"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3VL-s0-8Bp">
-                                <rect key="frame" x="169" y="13" width="112" height="32"/>
-                                <buttonCell key="cell" type="push" title="Clear (⌘ ⌫)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qo8-pU-Gcx">
+                                <rect key="frame" x="160" y="13" width="131" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear All (⌘ ⌫)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qo8-pU-Gcx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                    <connections>
-                                        <action selector="clearButtonPress:" target="XfG-lQ-9wD" id="iHt-0P-vb2"/>
-                                    </connections>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="clearAllButtonClick:" target="XfG-lQ-9wD" id="ahL-qA-94v"/>
+                                </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="50" horizontalPageScroll="10" verticalLineScroll="50" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-Jj-cfk">
                                 <rect key="frame" x="20" y="58" width="410" height="213"/>
@@ -756,7 +756,7 @@ CA
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system" size="18"/>
                                                                     </buttonCell>
-                                                                    <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="contentTintColor" red="0.30000000000000004" green="0.4166666666666663" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="keyboardShortcutButtonClick:" target="XfG-lQ-9wD" id="Haq-q3-wSq"/>
                                                                     </connections>
@@ -773,15 +773,36 @@ CA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-JW-fA8">
+                                                                    <rect key="frame" x="373" y="9" width="32" height="32"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="32" id="bFf-oR-eFD"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="zMe-65-f8N"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="clear-button" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="KNy-Dv-hg5">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                                                    </buttonCell>
+                                                                    <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                                                    <connections>
+                                                                        <action selector="clearButtonClick:" target="XfG-lQ-9wD" id="471-LV-nAr"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="BbR-bW-mEI"/>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="NCL-GT-fZ8"/>
                                                                 <constraint firstAttribute="trailing" secondItem="oun-si-vbV" secondAttribute="trailing" id="Qcn-qz-jQl"/>
+                                                                <constraint firstAttribute="trailing" secondItem="8Px-JW-fA8" secondAttribute="trailing" constant="5" id="X55-tK-hw6"/>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="top" secondItem="bqN-sm-a00" secondAttribute="top" id="Ysa-7X-JwB"/>
                                                                 <constraint firstItem="oun-si-vbV" firstAttribute="leading" secondItem="YTa-Yb-7Nk" secondAttribute="trailing" id="lAz-JN-71Y"/>
+                                                                <constraint firstItem="8Px-JW-fA8" firstAttribute="centerY" secondItem="bqN-sm-a00" secondAttribute="centerY" id="ylB-Yc-JTT"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="clearButton" destination="8Px-JW-fA8" id="Vw7-Cg-Nrq"/>
                                                                 <outlet property="clippedLabel" destination="oun-si-vbV" id="NeB-Qa-OTB"/>
                                                                 <outlet property="keyboardShortcutButton" destination="YTa-Yb-7Nk" id="6cP-ba-EcQ"/>
                                                             </connections>
@@ -846,4 +867,7 @@ CA
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="clear-button" width="16" height="16"/>
+    </resources>
 </document>

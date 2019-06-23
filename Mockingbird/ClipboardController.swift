@@ -48,13 +48,18 @@ class ClipboardController: NSViewController {
         LaunchAtLogin.isEnabled = Bool(truncating: sender.state.rawValue as NSNumber)
     }
     
-    @IBAction func clearButtonPress(_ sender: Any) {
+    @IBAction func clearAllButtonClick(_ sender: Any) {
         pasteboardManager.clipboard.removeAll()
         pasteboard.reloadData()
     }
     
-    @IBAction func quitButtonPress(_ sender: Any) {
+    @IBAction func quitButtonClick(_ sender: Any) {
         NSApplication.shared.terminate(self)
+    }
+    
+    @IBAction func clearButtonClick(_ sender: NSButton) {
+        pasteboardManager.clipboard.remove(at: sender.tag)
+        pasteboard.reloadData()
     }
     
     @IBAction func keyboardShortcutButtonClick(_ sender: NSButton) {
@@ -87,10 +92,35 @@ extension ClipboardController: NSTableViewDelegate {
             cell.keyboardShortcutButton.keyEquivalent = String(keyboardShortcut.last!)
             cell.keyboardShortcutButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMask(row: row)
             cell.clippedLabel.stringValue = clip
+            cell.clearButton.tag = row
+            cell.clearButton.isHidden = true
+            cell.clearButton.isEnabled = false
             
             return cell
         }
         return nil
+    }
+    
+    func handleTableViewChanges() {
+        for row in 0..<pasteboardManager.clipboard.count {
+            let cell = pasteboard.view(atColumn: 0, row: row, makeIfNecessary: true) as! ClipboardTableCellView
+            
+            if (row == pasteboard.selectedRow) {
+                cell.clearButton.isHidden = false
+                cell.clearButton.isEnabled = true
+            } else {
+                cell.clearButton.isHidden = true
+                cell.clearButton.isEnabled = false
+            }
+        }
+    }
+    
+    func tableViewSelectionIsChanging(_ notification: Notification) {
+        handleTableViewChanges()
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        handleTableViewChanges()
     }
 }
 
