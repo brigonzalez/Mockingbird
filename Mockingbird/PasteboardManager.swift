@@ -13,6 +13,7 @@ class PasteboardManager: NSObject {
     static var lastCopiedFromClipboardController: Bool = false
     
     var appPasteboard: [String] = []
+    var lastCopiedStringFromSystemPasteboard = ""
     
     private let systemPasteboard = NSPasteboard.general
     private var pasteboardItemCount: Int = 0
@@ -39,12 +40,16 @@ class PasteboardManager: NSObject {
     }
     
     @objc private func checkForChangesInPasteboard() {
-        if PasteboardManager.lastCopiedFromClipboardController {
-            pasteboardItemCount = systemPasteboard.changeCount
-            PasteboardManager.lastCopiedFromClipboardController = false
-        } else if let clippedString = systemPasteboard.string(forType: NSPasteboard.PasteboardType.string), systemPasteboard.changeCount != pasteboardItemCount {
-            addToClipboard(stringToAdd: clippedString)
-            pasteboardItemCount = systemPasteboard.changeCount
+        if let clippedString = systemPasteboard.string(forType: NSPasteboard.PasteboardType.string) {
+            lastCopiedStringFromSystemPasteboard = clippedString
+            
+            if PasteboardManager.lastCopiedFromClipboardController {
+                pasteboardItemCount = systemPasteboard.changeCount
+                PasteboardManager.lastCopiedFromClipboardController = false
+            } else if systemPasteboard.changeCount != pasteboardItemCount {
+                addToClipboard(stringToAdd: clippedString)
+                pasteboardItemCount = systemPasteboard.changeCount
+            }
         }
     }
 }

@@ -756,7 +756,7 @@ CA
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system" size="18"/>
                                                                     </buttonCell>
-                                                                    <color key="contentTintColor" red="0.30000000000000004" green="0.4166666666666663" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="contentTintColor" red="0.074509803921568626" green="0.80784313725490198" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="keyboardShortcutButtonClick:" target="XfG-lQ-9wD" id="Haq-q3-wSq"/>
                                                                     </connections>

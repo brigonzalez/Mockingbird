@@ -16,9 +16,12 @@ class ClipboardController: NSViewController {
     private let appDelegate = NSApplication.shared.delegate as! AppDelegate
     private let pasteboardManager = PasteboardManager.shared
     private var needToHandleTableViewSelectionDidChangeEvent = true
+    private let BLUE_COLOR = NSColor(red: 0.408, green: 0.51, blue: 1.0, alpha: 1.0)
+    private let GREEN_COLOR = NSColor(red: 0.075, green: 0.808, blue: 0.169, alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setPasteboardProperties()
         setStartAtLoginCheckbox()
     }
@@ -85,20 +88,37 @@ extension ClipboardController: NSTableViewDataSource {
 
 extension ClipboardController: NSTableViewDelegate {
     func tableView(_ pasteboard: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let keyboardShortcut = ClipboardShortcuts.clipboardShortcuts[row]
-        let clip = pasteboardManager.appPasteboard[row]
-        
         if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
+            let keyboardShortcut = ClipboardShortcuts.clipboardShortcuts[row]
+            
             cell.keyboardShortcutButton.title = keyboardShortcut
             cell.keyboardShortcutButton.keyEquivalent = String(keyboardShortcut.last!)
             cell.keyboardShortcutButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMask(row: row)
-            cell.clippedLabel.stringValue = clip
+            cell.keyboardShortcutButton.contentTintColor = getKeyboardShortcutButtonColor(row)
+            cell.keyboardShortcutButton.toolTip = getKeyboardShortcutButtonToolTip(row)
+            cell.clippedLabel.stringValue = pasteboardManager.appPasteboard[row]
             cell.clearButton.isHidden = true
             cell.clearButton.isEnabled = false
             
             return cell
         }
         return nil
+    }
+    
+    func getKeyboardShortcutButtonColor(_ row: Int) -> NSColor {
+        if pasteboardManager.appPasteboard[row] == pasteboardManager.lastCopiedStringFromSystemPasteboard {
+            return GREEN_COLOR
+        }
+        
+        return BLUE_COLOR
+    }
+    
+    func getKeyboardShortcutButtonToolTip(_ row: Int) -> String {
+        if pasteboardManager.appPasteboard[row] == pasteboardManager.lastCopiedStringFromSystemPasteboard {
+            return "This item is currently copied"
+        }
+        
+        return "Click here or press \(ClipboardShortcuts.clipboardShortcuts[row]) to copy"
     }
     
     func handleTableViewChanges() {
