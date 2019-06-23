@@ -97,12 +97,30 @@ extension ClipboardController: NSTableViewDelegate {
             cell.keyboardShortcutButton.contentTintColor = getKeyboardShortcutButtonColor(row)
             cell.keyboardShortcutButton.toolTip = getKeyboardShortcutButtonToolTip(row)
             cell.clippedLabel.stringValue = pasteboardManager.appPasteboard[row]
-            cell.clearButton.isHidden = true
-            cell.clearButton.isEnabled = false
+            cell.clearButton.alphaValue = 0.0
+            cell.clearButton.addTrackingArea(NSTrackingArea.init(rect: cell.clearButton.bounds,
+                                                                 options: [.mouseEnteredAndExited, .activeAlways],
+                                                                 owner: self,
+                                                                 userInfo: ["clearButton": cell.clearButton]))
             
             return cell
         }
         return nil
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        animateClearButtonForMouseEvents(event: event, toCGFloat: 1.0)
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        animateClearButtonForMouseEvents(event: event, toCGFloat: 0.0)
+    }
+    
+    func animateClearButtonForMouseEvents(event: NSEvent, toCGFloat: CGFloat) {
+        let clearButton = event.trackingArea?.userInfo?["clearButton"] as! NSButton
+        let selectedRow = clipboard.row(for: clearButton)
+        let cell = clipboard.view(atColumn: 0, row: selectedRow, makeIfNecessary: true) as! ClipboardTableCellView
+        animateClearButtonAlphaValue(cell.clearButton, toCGFloat: toCGFloat)
     }
     
     func getKeyboardShortcutButtonColor(_ row: Int) -> NSColor {
@@ -121,20 +139,6 @@ extension ClipboardController: NSTableViewDelegate {
         return "Click here or press \(ClipboardShortcuts.clipboardShortcuts[row]) to copy"
     }
     
-    func handleTableViewChanges() {
-        for row in 0..<pasteboardManager.appPasteboard.count {
-            let cell = clipboard.view(atColumn: 0, row: row, makeIfNecessary: true) as! ClipboardTableCellView
-            
-            if (row == clipboard.selectedRow) {
-                cell.clearButton.isHidden = false
-                cell.clearButton.isEnabled = true
-            } else {
-                cell.clearButton.isHidden = true
-                cell.clearButton.isEnabled = false
-            }
-        }
-    }
-    
     func tableViewSelectionIsChanging(_ notification: Notification) {
         needToHandleTableViewSelectionDidChangeEvent = false
         handleTableViewChanges()
@@ -145,6 +149,25 @@ extension ClipboardController: NSTableViewDelegate {
             handleTableViewChanges()
         }
         needToHandleTableViewSelectionDidChangeEvent = true
+    }
+    
+    func handleTableViewChanges() {
+        for row in 0..<pasteboardManager.appPasteboard.count {
+            let cell = clipboard.view(atColumn: 0, row: row, makeIfNecessary: true) as! ClipboardTableCellView
+            
+            if (row == clipboard.selectedRow) {
+                animateClearButtonAlphaValue(cell.clearButton, toCGFloat: 1.0)
+            } else {
+                animateClearButtonAlphaValue(cell.clearButton, toCGFloat: 0.0)
+            }
+        }
+    }
+    
+    func animateClearButtonAlphaValue(_ button: NSButton, toCGFloat: CGFloat) {
+        NSAnimationContext.runAnimationGroup({_ in
+            NSAnimationContext.current.duration = 0.2
+            button.animator().alphaValue = toCGFloat
+        })
     }
 }
 
