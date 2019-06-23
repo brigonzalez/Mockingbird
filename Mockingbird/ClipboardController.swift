@@ -61,15 +61,25 @@ class ClipboardController: NSViewController {
     }
     
     @IBAction func clearButtonClick(_ sender: NSButton) {
-        pasteboardManager.appPasteboard.remove(at: clipboard.selectedRow)
-        clipboard.removeRows(at: NSIndexSet(index: clipboard.selectedRow) as IndexSet, withAnimation: NSTableView.AnimationOptions.slideLeft)
+        let selectedRow = getRowForAction(sender)
+        pasteboardManager.appPasteboard.remove(at: selectedRow)
+        clipboard.removeRows(at: NSIndexSet(index: selectedRow) as IndexSet, withAnimation: NSTableView.AnimationOptions.slideLeft)
     }
     
     @IBAction func keyboardShortcutButtonClick(_ sender: NSButton) {
-        let selectedRow = clipboard.row(for: sender)
+        let selectedRow = getRowForAction(sender)
         let clip = pasteboardManager.appPasteboard[selectedRow]
+        
         pasteboardManager.copyToPasteboard(clip: clip)
         appDelegate.togglePopover(sender)
+    }
+    
+    func getRowForAction(_ sender: NSButton) -> Int{
+        if (clipboard.row(for: sender) >= 0) {
+            return clipboard.row(for: sender)
+        } else {
+            return clipboard.selectedRow
+        }
     }
     
     @objc func tableViewDoubleClick(_ sender: AnyObject) {
@@ -88,15 +98,19 @@ extension ClipboardController: NSTableViewDataSource {
 extension ClipboardController: NSTableViewDelegate {
     func tableView(_ pasteboard: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
-            let keyboardShortcut = ClipboardShortcuts.clipboardShortcuts[row]
+            let keyboardShortcut = ClipboardShortcuts.clipboardCopyShortcuts[row]
+            let clearShortcut = ClipboardShortcuts.clipboardClearShortcuts[row]
             
             cell.keyboardShortcutButton.title = keyboardShortcut
             cell.keyboardShortcutButton.keyEquivalent = String(keyboardShortcut.last!)
-            cell.keyboardShortcutButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMask(row: row)
+            cell.keyboardShortcutButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMaskForKeyboardShortcut(row)
             cell.keyboardShortcutButton.contentTintColor = getKeyboardShortcutButtonColor(row)
             cell.keyboardShortcutButton.toolTip = getKeyboardShortcutButtonToolTip(row)
             cell.clippedLabel.stringValue = pasteboardManager.appPasteboard[row]
             cell.clearButton.alphaValue = 0.0
+            cell.clearButton.keyEquivalent = String(clearShortcut.last!)
+            cell.clearButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMaskForClearButton(row)
+            cell.clearButton.toolTip = "Click here or press \(ClipboardShortcuts.clipboardClearShortcuts[row]) to delete entry"
             cell.clearButton.addTrackingArea(NSTrackingArea.init(rect: cell.clearButton.bounds,
                                                                  options: [.mouseEnteredAndExited, .activeAlways],
                                                                  owner: self,
@@ -121,7 +135,7 @@ extension ClipboardController: NSTableViewDelegate {
             return "This item is currently copied"
         }
         
-        return "Click here or press \(ClipboardShortcuts.clipboardShortcuts[row]) to copy"
+        return "Click here or press \(ClipboardShortcuts.clipboardCopyShortcuts[row]) to copy"
     }
     
     override func mouseEntered(with event: NSEvent) {

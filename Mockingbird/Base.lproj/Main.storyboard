@@ -754,7 +754,7 @@ CA
                                                                     </constraints>
                                                                     <buttonCell key="cell" type="bevel" title="⌘1" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="hK5-2X-AeM">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="system" size="18"/>
+                                                                        <font key="font" metaFont="system" size="16"/>
                                                                     </buttonCell>
                                                                     <color key="contentTintColor" red="0.074509803921568626" green="0.80784313725490198" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
@@ -773,7 +773,7 @@ CA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <button toolTip="Press ⌘⌫ to delete row" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-JW-fA8">
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-JW-fA8">
                                                                     <rect key="frame" x="373" y="9" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="bFf-oR-eFD"/>
@@ -782,10 +782,6 @@ CA
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="clear-button" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="KNy-Dv-hg5">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
-                                                                        <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                     </buttonCell>
                                                                     <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                                                                     <connections>
