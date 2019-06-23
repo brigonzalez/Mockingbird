@@ -61,9 +61,8 @@ class ClipboardController: NSViewController {
     }
     
     @IBAction func clearButtonClick(_ sender: NSButton) {
-        let selectedRow = clipboard.row(for: sender)
-        pasteboardManager.appPasteboard.remove(at: selectedRow)
-        clipboard.removeRows(at: NSIndexSet(index: selectedRow) as IndexSet, withAnimation: NSTableView.AnimationOptions.slideLeft)
+        pasteboardManager.appPasteboard.remove(at: clipboard.selectedRow)
+        clipboard.removeRows(at: NSIndexSet(index: clipboard.selectedRow) as IndexSet, withAnimation: NSTableView.AnimationOptions.slideLeft)
     }
     
     @IBAction func keyboardShortcutButtonClick(_ sender: NSButton) {
@@ -105,22 +104,8 @@ extension ClipboardController: NSTableViewDelegate {
             
             return cell
         }
+        
         return nil
-    }
-    
-    override func mouseEntered(with event: NSEvent) {
-        animateClearButtonForMouseEvents(event: event, toCGFloat: 1.0)
-    }
-    
-    override func mouseExited(with event: NSEvent) {
-        animateClearButtonForMouseEvents(event: event, toCGFloat: 0.0)
-    }
-    
-    func animateClearButtonForMouseEvents(event: NSEvent, toCGFloat: CGFloat) {
-        let clearButton = event.trackingArea?.userInfo?["clearButton"] as! NSButton
-        let selectedRow = clipboard.row(for: clearButton)
-        let cell = clipboard.view(atColumn: 0, row: selectedRow, makeIfNecessary: true) as! ClipboardTableCellView
-        animateClearButtonAlphaValue(cell.clearButton, toCGFloat: toCGFloat)
     }
     
     func getKeyboardShortcutButtonColor(_ row: Int) -> NSColor {
@@ -137,6 +122,21 @@ extension ClipboardController: NSTableViewDelegate {
         }
         
         return "Click here or press \(ClipboardShortcuts.clipboardShortcuts[row]) to copy"
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        animateClearButtonForMouseEvents(event: event, toCGFloat: 1.0)
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        animateClearButtonForMouseEvents(event: event, toCGFloat: 0.0)
+    }
+    
+    func animateClearButtonForMouseEvents(event: NSEvent, toCGFloat: CGFloat) {
+        let clearButton = event.trackingArea?.userInfo?["clearButton"] as! NSButton
+        let selectedRow = clipboard.row(for: clearButton)
+        let cell = clipboard.view(atColumn: 0, row: selectedRow, makeIfNecessary: true) as! ClipboardTableCellView
+        animateClearButtonAlphaValue(cell.clearButton, toCGFloat: toCGFloat)
     }
     
     func tableViewSelectionIsChanging(_ notification: Notification) {
