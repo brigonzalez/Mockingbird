@@ -8,6 +8,8 @@
 
 import Cocoa
 import LaunchAtLogin
+import HotKey
+import Magnet
 
 class ClipboardController: NSViewController {
     @IBOutlet weak var clipboard: NSTableView!
@@ -17,19 +19,22 @@ class ClipboardController: NSViewController {
     private let pasteboardManager = PasteboardManager.shared
     private var needToHandleTableViewSelectionDidChangeEvent = true
     private let BLUE_COLOR = NSColor(red: 0.408, green: 0.51, blue: 1.0, alpha: 1.0)
-    private let GREEN_COLOR = NSColor(red: 0.075, green: 0.808, blue: 0.169, alpha: 1.0)
+    private let GREEN_COLOR = NSColor(red: 0.071, green: 0.749, blue: 0.161, alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setPasteboardProperties()
         setStartAtLoginCheckbox()
+        setClearSelectionKeyboardShortcut()
+        setCopyToClipboardEnterKeyboardShortcut()
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        
-        clipboard.reloadData()
+    func setPasteboardProperties() {
+        clipboard.delegate = self
+        clipboard.dataSource = self
+        clipboard.target = self
+        clipboard.doubleAction = #selector(tableViewDoubleClick(_:))
     }
     
     func setStartAtLoginCheckbox() {
@@ -40,11 +45,48 @@ class ClipboardController: NSViewController {
         }
     }
     
-    func setPasteboardProperties() {
-        clipboard.delegate = self
-        clipboard.dataSource = self
-        clipboard.target = self
-        clipboard.doubleAction = #selector(tableViewDoubleClick(_:))
+    func setClearSelectionKeyboardShortcut() {
+        let enterEventMonitor = EventMonitor(mask: .keyDown) { [weak self] event in
+            if let strongSelf = self, event?.keyCode == 36 {
+                strongSelf.copyToClipboardIfPossible()
+            }
+        }
+        enterEventMonitor.startLocalMonitor()
+    }
+    
+    func setCopyToClipboardEnterKeyboardShortcut() {
+        let commandBackspaceEventMonitor = EventMonitor(mask: .keyDown) { [weak self] event in
+            if let strongSelf = self, event?.keyCode == 51 && event?.modifierFlags.contains(.command) ?? false {
+                strongSelf.clearEntryIfPossible()
+            }
+        }
+        commandBackspaceEventMonitor.startLocalMonitor()
+    }
+    
+    func copyToClipboardIfPossible() {
+        let selectedRow = clipboard.selectedRow
+        
+        if (selectedRow != -1) {
+            let cell = clipboard.view(atColumn: 0, row: selectedRow, makeIfNecessary: true) as! ClipboardTableCellView
+            
+            keyboardShortcutButtonClick(cell.keyboardShortcutButton)
+        }
+    }
+    
+    func clearEntryIfPossible() {
+        let selectedRow = clipboard.selectedRow
+        
+        if (selectedRow != -1) {
+            let cell = clipboard.view(atColumn: 0, row: selectedRow, makeIfNecessary: true) as! ClipboardTableCellView
+            
+            clearButtonClick(cell.clearButton)
+        }
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        clipboard.reloadData()
     }
     
     @IBAction func startAtLoginCheck(_ sender: NSButton) {
@@ -61,25 +103,16 @@ class ClipboardController: NSViewController {
     }
     
     @IBAction func clearButtonClick(_ sender: NSButton) {
-        let selectedRow = getRowForAction(sender)
+        let selectedRow = clipboard.row(for: sender)
         pasteboardManager.appPasteboard.remove(at: selectedRow)
         clipboard.removeRows(at: NSIndexSet(index: selectedRow) as IndexSet, withAnimation: NSTableView.AnimationOptions.slideLeft)
     }
     
     @IBAction func keyboardShortcutButtonClick(_ sender: NSButton) {
-        let selectedRow = getRowForAction(sender)
+        let selectedRow = clipboard.row(for: sender)
         let clip = pasteboardManager.appPasteboard[selectedRow]
-        
         pasteboardManager.copyToPasteboard(clip: clip)
         appDelegate.togglePopover(sender)
-    }
-    
-    func getRowForAction(_ sender: NSButton) -> Int{
-        if (clipboard.row(for: sender) >= 0) {
-            return clipboard.row(for: sender)
-        } else {
-            return clipboard.selectedRow
-        }
     }
     
     @objc func tableViewDoubleClick(_ sender: AnyObject) {
@@ -99,7 +132,6 @@ extension ClipboardController: NSTableViewDelegate {
     func tableView(_ pasteboard: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if let cell = pasteboard.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ClipCellId"), owner: nil) as? ClipboardTableCellView {
             let keyboardShortcut = ClipboardShortcuts.clipboardCopyShortcuts[row]
-            let clearShortcut = ClipboardShortcuts.clipboardClearShortcuts[row]
             
             cell.keyboardShortcutButton.title = keyboardShortcut
             cell.keyboardShortcutButton.keyEquivalent = String(keyboardShortcut.last!)
@@ -108,9 +140,6 @@ extension ClipboardController: NSTableViewDelegate {
             cell.keyboardShortcutButton.toolTip = getKeyboardShortcutButtonToolTip(row)
             cell.clippedLabel.stringValue = pasteboardManager.appPasteboard[row]
             cell.clearButton.alphaValue = 0.0
-            cell.clearButton.keyEquivalent = String(clearShortcut.last!)
-            cell.clearButton.keyEquivalentModifierMask = ClipboardShortcuts.getModifierMaskForClearButton(row)
-            cell.clearButton.toolTip = "Click here or press \(ClipboardShortcuts.clipboardClearShortcuts[row]) to delete entry"
             cell.clearButton.addTrackingArea(NSTrackingArea.init(rect: cell.clearButton.bounds,
                                                                  options: [.mouseEnteredAndExited, .activeAlways],
                                                                  owner: self,
