@@ -685,11 +685,11 @@
             <objects>
                 <viewController storyboardIdentifier="ClipboardController" id="XfG-lQ-9wD" customClass="ClipboardController" customModule="Mockingbird" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="UQH-wb-CrB">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="462" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v0Q-u8-4tv">
-                                <rect key="frame" x="336" y="13" width="100" height="32"/>
+                                <rect key="frame" x="346" y="13" width="102" height="32"/>
                                 <buttonCell key="cell" type="push" title="Quit (⌘Q)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A1D-zv-iNA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -701,7 +701,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3VL-s0-8Bp">
-                                <rect key="frame" x="156" y="13" width="138" height="32"/>
+                                <rect key="frame" x="162" y="13" width="138" height="32"/>
                                 <buttonCell key="cell" type="push" title="Clear All (⌘⇧⌫)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qo8-pU-Gcx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -715,19 +715,19 @@ CA
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="50" horizontalPageScroll="10" verticalLineScroll="50" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-Jj-cfk">
-                                <rect key="frame" x="20" y="58" width="410" height="213"/>
+                                <rect key="frame" x="20" y="58" width="422" height="213"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="k84-sW-8Tv">
-                                    <rect key="frame" x="1" y="1" width="408" height="211"/>
+                                    <rect key="frame" x="1" y="1" width="420" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" usesAutomaticRowHeights="YES" viewBased="YES" id="fph-Ek-gdI">
-                                            <rect key="frame" x="0.0" y="0.0" width="408" height="211"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" usesAutomaticRowHeights="YES" viewBased="YES" id="fph-Ek-gdI">
+                                            <rect key="frame" x="0.0" y="0.0" width="420" height="211"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn editable="NO" width="408" minWidth="10" maxWidth="3.4028234663852886e+38" id="Nog-0l-837">
+                                                <tableColumn editable="NO" width="420" minWidth="10" maxWidth="3.4028234663852886e+38" id="Nog-0l-837">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -740,17 +740,14 @@ CA
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ClipCellId" autoresizesSubviews="NO" misplaced="YES" id="bqN-sm-a00" customClass="ClipboardTableCellView" customModule="Mockingbird" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="408" height="50"/>
+                                                        <tableCellView identifier="ClipCellId" autoresizesSubviews="NO" id="bqN-sm-a00" customClass="ClipboardTableCellView" customModule="Mockingbird" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="420" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTa-Yb-7Nk">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="HX1-nF-XLo"/>
-                                                                        <constraint firstAttribute="width" constant="50" id="Jgs-Rm-S5E"/>
-                                                                        <constraint firstAttribute="height" constant="50" id="QHQ-2x-KBh"/>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="cW0-0g-4fu"/>
+                                                                        <constraint firstAttribute="width" secondItem="YTa-Yb-7Nk" secondAttribute="height" multiplier="1:1" id="9AD-Ja-n4y"/>
                                                                     </constraints>
                                                                     <buttonCell key="cell" type="bevel" title="⌘1" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="hK5-2X-AeM">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -761,11 +758,10 @@ CA
                                                                         <action selector="keyboardShortcutButtonClick:" target="XfG-lQ-9wD" id="Haq-q3-wSq"/>
                                                                     </connections>
                                                                 </button>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oun-si-vbV">
-                                                                    <rect key="frame" x="50" y="0.0" width="360" height="50"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oun-si-vbV">
+                                                                    <rect key="frame" x="48" y="0.0" width="374" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="1Cj-Vk-b9I"/>
-                                                                        <constraint firstAttribute="width" constant="360" id="uTF-sa-pPh"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" selectable="YES" title="Clipped string" id="WOx-4R-uNz">
                                                                         <font key="font" metaFont="system"/>
@@ -774,7 +770,7 @@ CA
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <button toolTip="Click here or highlight row and press ⌘⌫ to delete row" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-JW-fA8">
-                                                                    <rect key="frame" x="373" y="9" width="32" height="32"/>
+                                                                    <rect key="frame" x="383" y="9" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="bFf-oR-eFD"/>
                                                                         <constraint firstAttribute="height" constant="32" id="zMe-65-f8N"/>
@@ -791,11 +787,13 @@ CA
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="BbR-bW-mEI"/>
-                                                                <constraint firstItem="YTa-Yb-7Nk" firstAttribute="leading" secondItem="bqN-sm-a00" secondAttribute="leading" id="NCL-GT-fZ8"/>
+                                                                <constraint firstAttribute="bottom" secondItem="YTa-Yb-7Nk" secondAttribute="bottom" id="Iok-rc-6hU"/>
                                                                 <constraint firstAttribute="trailing" secondItem="oun-si-vbV" secondAttribute="trailing" id="Qcn-qz-jQl"/>
+                                                                <constraint firstAttribute="bottom" secondItem="oun-si-vbV" secondAttribute="bottom" id="THs-0F-nIt"/>
                                                                 <constraint firstAttribute="trailing" secondItem="8Px-JW-fA8" secondAttribute="trailing" constant="5" id="X55-tK-hw6"/>
                                                                 <constraint firstItem="YTa-Yb-7Nk" firstAttribute="top" secondItem="bqN-sm-a00" secondAttribute="top" id="Ysa-7X-JwB"/>
                                                                 <constraint firstItem="oun-si-vbV" firstAttribute="leading" secondItem="YTa-Yb-7Nk" secondAttribute="trailing" id="lAz-JN-71Y"/>
+                                                                <constraint firstItem="oun-si-vbV" firstAttribute="top" secondItem="bqN-sm-a00" secondAttribute="top" id="qet-Q1-1fy"/>
                                                                 <constraint firstItem="8Px-JW-fA8" firstAttribute="centerY" secondItem="bqN-sm-a00" secondAttribute="centerY" id="ylB-Yc-JTT"/>
                                                             </constraints>
                                                             <connections>
@@ -811,7 +809,7 @@ CA
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="4sM-pO-yO7">
-                                    <rect key="frame" x="1" y="196" width="408" height="16"/>
+                                    <rect key="frame" x="1" y="196" width="420" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="YNO-UB-bLn">
@@ -820,7 +818,7 @@ CA
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A3F-dL-a41">
-                                <rect key="frame" x="147" y="277" width="157" height="17"/>
+                                <rect key="frame" x="153" y="277" width="157" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Show and hide with ⌘⇧V" id="5af-KS-wfp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -840,6 +838,7 @@ CA
                         </subviews>
                         <constraints>
                             <constraint firstItem="3VL-s0-8Bp" firstAttribute="centerX" secondItem="UQH-wb-CrB" secondAttribute="centerX" id="0qZ-QL-pJ1"/>
+                            <constraint firstItem="v0Q-u8-4tv" firstAttribute="leading" secondItem="3VL-s0-8Bp" secondAttribute="centerX" constant="121" id="1Lh-wI-W3m"/>
                             <constraint firstItem="v0Q-u8-4tv" firstAttribute="top" secondItem="9UK-Jj-cfk" secondAttribute="bottom" constant="17" id="230-Xb-lKs"/>
                             <constraint firstAttribute="bottom" secondItem="v0Q-u8-4tv" secondAttribute="bottom" constant="20" id="Ait-Pe-Ag0"/>
                             <constraint firstItem="A3F-dL-a41" firstAttribute="top" secondItem="UQH-wb-CrB" secondAttribute="top" constant="6" id="CcS-mX-gn0"/>
@@ -851,6 +850,7 @@ CA
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="leading" secondItem="UQH-wb-CrB" secondAttribute="leading" constant="20" id="a08-mM-Ivt"/>
                             <constraint firstAttribute="bottom" secondItem="MCB-C4-5dh" secondAttribute="bottom" constant="24" id="eLT-fz-5vg"/>
                             <constraint firstItem="9UK-Jj-cfk" firstAttribute="top" secondItem="A3F-dL-a41" secondAttribute="bottom" constant="6" id="g3v-t6-XN6"/>
+                            <constraint firstItem="3VL-s0-8Bp" firstAttribute="centerX" secondItem="MCB-C4-5dh" secondAttribute="trailing" constant="114" id="hye-k7-2NW"/>
                             <constraint firstAttribute="trailing" secondItem="v0Q-u8-4tv" secondAttribute="trailing" constant="20" id="oLZ-R7-N6l"/>
                         </constraints>
                     </view>

@@ -161,7 +161,7 @@ extension ClipboardController: NSTableViewDelegate {
     
     func getKeyboardShortcutButtonToolTip(_ row: Int) -> String {
         if pasteboardManager.appPasteboard[row] == pasteboardManager.lastCopiedStringFromSystemPasteboard {
-            return "This item is currently copied"
+            return "This entry is currently copied"
         }
         
         return "Click here or press \(ClipboardShortcuts.clipboardCopyShortcuts[row]) to copy"
