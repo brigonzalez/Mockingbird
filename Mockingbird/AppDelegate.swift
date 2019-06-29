@@ -9,6 +9,7 @@
 import Cocoa
 import HotKey
 import Magnet
+import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        killLauncher()
         popover.contentViewController = ClipboardController.freshController()
         setStatusButton()
         setMouseEventMonitor()
@@ -25,6 +27,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setShowHideKeyboardShortcut()
         
         pasteboardWatcher.startPolling()
+    }
+    
+    func killLauncher() {
+        let launcherAppId = "com.developerbriangonzalez.MockingbirdLauncher"
+        let runningApps = NSWorkspace.shared.runningApplications
+        let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
+        
+        SMLoginItemSetEnabled(launcherAppId as CFString, true)
+        
+        if isRunning {
+            DistributedNotificationCenter.default().post(name: .killLauncher,
+                                                         object: Bundle.main.bundleIdentifier!)
+        }
     }
 
     func setStatusButton() {
@@ -75,4 +90,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.performClose(sender)
         mouseEventMonitor?.stopGlobalMonitor()
     }
+}
+
+extension Notification.Name {
+    static let killLauncher = Notification.Name("killLauncher")
 }
