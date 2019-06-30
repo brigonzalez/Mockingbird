@@ -9,7 +9,7 @@
 import Cocoa
 import HotKey
 import Magnet
-import ServiceManagement
+import LaunchAtLogin
 
 class ClipboardController: NSViewController {
     @IBOutlet weak var clipboard: NSTableView!
@@ -38,11 +38,7 @@ class ClipboardController: NSViewController {
     }
     
     func setStartAtLoginCheckbox() {
-        let foundHelper = NSWorkspace.shared.runningApplications.contains {
-            $0.bundleIdentifier == appDelegate.launcherAppId
-        }
-        
-        startAtLoginCheckbox.state = foundHelper ? .on : .off
+        startAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
     }
     
     func setClearSelectionKeyboardShortcut() {
@@ -92,25 +88,7 @@ class ClipboardController: NSViewController {
     @IBAction func startAtLoginCheck(_ sender: NSButton) {
         let isLaunchLoginEnabled = Bool(truncating: sender.state.rawValue as NSNumber)
         
-//        SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, isLaunchLoginEnabled)
-        
-        if isLaunchLoginEnabled {
-            if !SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, true) {
-                print("The login item was not successfull")
-//                toggleOpenAppLogin.setSelected(true, forSegment: 1)
-            }
-//            else {
-//                UserDefaults.standard.set("true", forKey: "appLoginStart")
-//            }
-        } else {
-            if !SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, false) {
-                print("The login item was not successfull")
-//                toggleOpenAppLogin.setSelected(true, forSegment: 0)
-            }
-//            else {
-//                UserDefaults.standard.set("false", forKey: "appLoginStart")
-//            }
-        }
+        LaunchAtLogin.isEnabled = isLaunchLoginEnabled
     }
     
     @IBAction func clearAllButtonClick(_ sender: Any) {

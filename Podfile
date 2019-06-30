@@ -8,4 +8,5 @@ target 'Mockingbird' do
   # Pods for Mockingbird
   pod 'HotKey', '~> 0.1.1'
   pod 'Magnet', '~> 2.3.1'
+  pod 'LaunchAtLogin', '~> 2.5.0'
 end
