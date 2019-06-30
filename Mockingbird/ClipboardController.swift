@@ -92,7 +92,25 @@ class ClipboardController: NSViewController {
     @IBAction func startAtLoginCheck(_ sender: NSButton) {
         let isLaunchLoginEnabled = Bool(truncating: sender.state.rawValue as NSNumber)
         
-        SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, isLaunchLoginEnabled)
+//        SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, isLaunchLoginEnabled)
+        
+        if isLaunchLoginEnabled {
+            if !SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, true) {
+                print("The login item was not successfull")
+//                toggleOpenAppLogin.setSelected(true, forSegment: 1)
+            }
+//            else {
+//                UserDefaults.standard.set("true", forKey: "appLoginStart")
+//            }
+        } else {
+            if !SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, false) {
+                print("The login item was not successfull")
+//                toggleOpenAppLogin.setSelected(true, forSegment: 0)
+            }
+//            else {
+//                UserDefaults.standard.set("false", forKey: "appLoginStart")
+//            }
+        }
     }
     
     @IBAction func clearAllButtonClick(_ sender: Any) {

@@ -8,8 +8,20 @@
 
 import Cocoa
 
+extension Notification.Name {
+    static let killLauncher = Notification.Name("killLauncher")
+}
+
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject {
+    
+    @objc func terminate() {
+        NSApp.terminate(nil)
+    }
+}
+
+extension AppDelegate: NSApplicationDelegate {
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let mainAppIdentifier = "com.developerbriangonzalez.Mockingbird"
         let runningApps = NSWorkspace.shared.runningApplications
@@ -23,9 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             let path = Bundle.main.bundlePath as NSString
             var components = path.pathComponents
-            for _ in 1...4 {
-                components.removeLast()
-            }
+            components.removeLast()
+            components.removeLast()
+            components.removeLast()
             components.append("MacOS")
             components.append("Mockingbird")
             
@@ -36,12 +48,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.terminate()
         }
     }
-    
-    @objc func terminate() {
-        NSApp.terminate(nil)
-    }
 }
 
-extension Notification.Name {
-    static let killLauncher = Notification.Name("killLauncher")
-}

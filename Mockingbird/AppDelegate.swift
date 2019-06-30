@@ -10,14 +10,21 @@ import Cocoa
 import HotKey
 import Magnet
 
+extension Notification.Name {
+    static let killLauncher = Notification.Name("killLauncher")
+}
+
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject {
     let launcherAppId = "com.developerbriangonzalez.MockingbirdLauncher"
     var mouseEventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let pasteboardWatcher = PasteboardManager.shared
     let popover = NSPopover()
+}
 
+
+extension AppDelegate: NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         killLauncher()
         popover.contentViewController = ClipboardController.freshController()
@@ -33,9 +40,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let runningApps = NSWorkspace.shared.runningApplications
         let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
         
+//        SMLoginItemSetEnabled(launcherAppId as CFString, true)
+        
         if isRunning {
-            DistributedNotificationCenter.default().post(name: .killLauncher,
-                                                         object: Bundle.main.bundleIdentifier!)
+            DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!, userInfo: nil)
         }
     }
 
@@ -87,8 +95,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.performClose(sender)
         mouseEventMonitor?.stopGlobalMonitor()
     }
-}
-
-extension Notification.Name {
-    static let killLauncher = Notification.Name("killLauncher")
 }
