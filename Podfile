@@ -8,15 +8,4 @@ target 'Mockingbird' do
   # Pods for Mockingbird
   pod 'HotKey', '~> 0.1.1'
   pod 'Magnet', '~> 2.3.1'
-
-  target 'MockingbirdTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'MockingbirdUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

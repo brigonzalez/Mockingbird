@@ -9,6 +9,7 @@
 import Cocoa
 import HotKey
 import Magnet
+import ServiceManagement
 
 class ClipboardController: NSViewController {
     @IBOutlet weak var clipboard: NSTableView!
@@ -37,11 +38,11 @@ class ClipboardController: NSViewController {
     }
     
     func setStartAtLoginCheckbox() {
-//        if (LaunchAtLogin.isEnabled) {
-//            startAtLoginCheckbox.state = NSControl.StateValue.on
-//        } else {
-//            startAtLoginCheckbox.state = NSControl.StateValue.off
-//        }
+        let foundHelper = NSWorkspace.shared.runningApplications.contains {
+            $0.bundleIdentifier == appDelegate.launcherAppId
+        }
+        
+        startAtLoginCheckbox.state = foundHelper ? .on : .off
     }
     
     func setClearSelectionKeyboardShortcut() {
@@ -89,7 +90,9 @@ class ClipboardController: NSViewController {
     }
     
     @IBAction func startAtLoginCheck(_ sender: NSButton) {
-//        LaunchAtLogin.isEnabled = Bool(truncating: sender.state.rawValue as NSNumber)
+        let isLaunchLoginEnabled = Bool(truncating: sender.state.rawValue as NSNumber)
+        
+        SMLoginItemSetEnabled(appDelegate.launcherAppId as CFString, isLaunchLoginEnabled)
     }
     
     @IBAction func clearAllButtonClick(_ sender: Any) {

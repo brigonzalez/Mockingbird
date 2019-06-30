@@ -28,7 +28,7 @@
 		925C1A3E22C816550068EA64 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Content/Library/LoginItems;
+			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
 				925C1A3F22C816800068EA64 /* MockingbirdLauncher.app in CopyFiles */,
@@ -366,7 +366,7 @@
 				CODE_SIGN_ENTITLEMENTS = MockingbirdLauncher/MockingbirdLauncher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7WK64523P9;
+				DEVELOPMENT_TEAM = PH78Y6V4RC;
 				INFOPLIST_FILE = MockingbirdLauncher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,7 +386,7 @@
 				CODE_SIGN_ENTITLEMENTS = MockingbirdLauncher/MockingbirdLauncher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7WK64523P9;
+				DEVELOPMENT_TEAM = PH78Y6V4RC;
 				INFOPLIST_FILE = MockingbirdLauncher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,7 +522,7 @@
 				CODE_SIGN_ENTITLEMENTS = Mockingbird/Mockingbird.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7WK64523P9;
+				DEVELOPMENT_TEAM = PH78Y6V4RC;
 				INFOPLIST_FILE = Mockingbird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -542,7 +542,7 @@
 				CODE_SIGN_ENTITLEMENTS = Mockingbird/Mockingbird.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7WK64523P9;
+				DEVELOPMENT_TEAM = PH78Y6V4RC;
 				INFOPLIST_FILE = Mockingbird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

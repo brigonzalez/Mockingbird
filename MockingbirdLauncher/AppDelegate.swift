@@ -9,15 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject {
-    
-    @objc func terminate() {
-        NSApp.terminate(nil)
-    }
-}
-
-extension AppDelegate: NSApplicationDelegate {
-    
+class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let mainAppIdentifier = "com.developerbriangonzalez.Mockingbird"
         let runningApps = NSWorkspace.shared.runningApplications
@@ -31,19 +23,22 @@ extension AppDelegate: NSApplicationDelegate {
             
             let path = Bundle.main.bundlePath as NSString
             var components = path.pathComponents
-            components.removeLast()
-            components.removeLast()
-            components.removeLast()
+            for _ in 1...4 {
+                components.removeLast()
+            }
             components.append("MacOS")
             components.append("Mockingbird")
             
             let newPath = NSString.path(withComponents: components)
             
             NSWorkspace.shared.launchApplication(newPath)
-        }
-        else {
+        } else {
             self.terminate()
         }
+    }
+    
+    @objc func terminate() {
+        NSApp.terminate(nil)
     }
 }
 

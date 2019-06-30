@@ -9,10 +9,10 @@
 import Cocoa
 import HotKey
 import Magnet
-import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let launcherAppId = "com.developerbriangonzalez.MockingbirdLauncher"
     var mouseEventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let pasteboardWatcher = PasteboardManager.shared
@@ -30,11 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func killLauncher() {
-        let launcherAppId = "com.developerbriangonzalez.MockingbirdLauncher"
         let runningApps = NSWorkspace.shared.runningApplications
         let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
-        
-        SMLoginItemSetEnabled(launcherAppId as CFString, true)
         
         if isRunning {
             DistributedNotificationCenter.default().post(name: .killLauncher,
