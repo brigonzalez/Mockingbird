@@ -141,7 +141,7 @@ extension ClipboardController: NSTableViewDelegate {
             cell.clearButton.addTrackingArea(NSTrackingArea.init(rect: cell.clearButton.bounds,
                                                                  options: [.mouseEnteredAndExited, .activeAlways],
                                                                  owner: self,
-                                                                 userInfo: ["clearButton": cell.clearButton]))
+                                                                 userInfo: ["clearButton": cell.clearButton as Any]))
             
             return cell
         }
