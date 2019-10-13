@@ -29,5 +29,5 @@ A green keyboard shortcut to the left of the text indicates the text that is cur
 
 To **delete** text from the Mockingbird app you can:
 * click on the "x" on the right side of the text -- the "x" appears when you hover the mouse over the right side of the text
-* arrow up or down to the text and use the ⌘⌦ (command + delete/backspace) shortcut
-* use the ⌘⇧⌦ keyboard shortcut to **delete all** of the text on the clipboard
+* arrow up or down to the text and use the ⌘⌦ (command + delete/backspace) keyboard shortcut
+* use the ⌘⇧⌦ (command + shift + delete/backspace) keyboard shortcut to **delete all** of the text on the clipboard
