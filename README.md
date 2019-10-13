@@ -1,12 +1,22 @@
 # Mockingbird
 
-> A MacOS app for your clipboard
+> A MacOS menu bar app for your clipboard
 
 ![Mockingbird logo](https://github.com/brigonzalez/Mockingbird/blob/master/Mockingbird/Assets.xcassets/AppIcon.appiconset/Mockingbird-logo%402x-2.png)
 
-![Mockingbird screenshot](https://github.com/brigonzalez/Mockingbird/blob/master/Mockingbird-screenshot.png)
+![Mockingbird screenshot](https://github.com/brigonzalez/Mockingbird/blob/master/screenshots/Mockingbird-screenshot.png)
 
-Mockingbird stores up to 20 strings of text.
+Mockingbird is a MacOS menu bar app that stores up to 20 strings of text.
+
+![Mockingbird menu bar screenshot](https://github.com/brigonzalez/Mockingbird/blob/master/screenshots/Mockingbird-menu-icon-screenshot.png)
+
+## Installation
+
+1. Download from [here](https://github.com/brigonzalez/Mockingbird/releases/download/1.0.0/Mockingbird.app.zip)
+2. Unzip the downloaded file
+3. Move the "Mockingbird.app" file into your "Applications" folder
+
+## Instructions
 
 To **copy** text you can:
 * double click on the text you'd like to copy
