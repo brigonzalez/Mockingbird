@@ -12,9 +12,7 @@ Mockingbird is a MacOS menu bar app that stores up to 20 strings of text.
 
 ## Installation
 
-1. Download from [here](https://github.com/brigonzalez/Mockingbird/releases/download/1.0.0/Mockingbird.app.zip)
-2. Unzip the downloaded file
-3. Move the "Mockingbird.app" file into your "Applications" folder
+Download from [here](https://github.com/brigonzalez/Mockingbird/releases/download/1.0.0/Mockingbird.1.0.0.dmg)
 
 ## Instructions
 
