@@ -10,13 +10,8 @@ import Cocoa
 import HotKey
 import Magnet
 
-//extension Notification.Name {
-//    static let killLauncher = Notification.Name("killLauncher")
-//}
-
 @NSApplicationMain
 class AppDelegate: NSObject {
-//    let launcherAppId = "com.developerbriangonzalez.MockingbirdLauncher"
     var mouseEventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let pasteboardWatcher = PasteboardManager.shared
@@ -26,7 +21,6 @@ class AppDelegate: NSObject {
 
 extension AppDelegate: NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-//        killLauncher()
         popover.contentViewController = ClipboardController.freshController()
         setStatusButton()
         setMouseEventMonitor()
@@ -35,16 +29,6 @@ extension AppDelegate: NSApplicationDelegate {
         
         pasteboardWatcher.startPolling()
     }
-    
-//    func killLauncher() {
-//        let runningApps = NSWorkspace.shared.runningApplications
-//        let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
-//
-//
-//        if isRunning {
-//            DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!, userInfo: nil)
-//        }
-//    }
 
     func setStatusButton() {
         let mockingbirdMenuButton = statusItem.button
