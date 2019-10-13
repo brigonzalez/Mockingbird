@@ -14,7 +14,7 @@ Mockingbird is a MacOS menu bar app that stores up to 20 strings of text.
 
 Download from [here](https://github.com/brigonzalez/Mockingbird/releases/download/1.0.0/Mockingbird.1.0.0.dmg)
 
-**NOTE**: Your Mac may ask you for permission to allow the app to "monitor input from your keyboard even while using other apps." This functionality is necessary only to show and hide the app using the ⌘⇧v (command + shift + v) keyboard shortcut from anywhere on your Mac.
+**NOTE**: Your Mac may ask you for permission to allow the app to "monitor input from your keyboard even while using other apps." This functionality is necessary only to show and hide the app using the ⌘⇧V (command + shift + V) keyboard shortcut from anywhere on your Mac.
 
 ## Instructions
 
