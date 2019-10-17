@@ -6,7 +6,7 @@
 
 ![Mockingbird screenshot](https://github.com/brigonzalez/Mockingbird/blob/master/screenshots/Mockingbird-screenshot.png)
 
-Mockingbird is a MacOS menu bar app that stores up to 20 strings of text.
+Mockingbird is a MacOS menu bar app for your clipboard that stores up to 20 strings of text.
 
 ![Mockingbird menu bar screenshot](https://github.com/brigonzalez/Mockingbird/blob/master/screenshots/Mockingbird-menu-icon-screenshot.png)
 
